@@ -75,7 +75,7 @@ export function FAQSection() {
             <div className="p-6 rounded-2xl bg-primary text-primary-foreground">
               <h3 className="text-xl font-bold mb-2">Still have questions?</h3>
               <p className="text-primary-foreground/80 mb-4">Our team is ready to help you with any queries.</p>
-              <div className="text-lg font-semibold">📞 +1 234 567 8900</div>
+              <div className="text-lg font-semibold">📞 +8801332-846700</div>
             </div>
           </div>
 

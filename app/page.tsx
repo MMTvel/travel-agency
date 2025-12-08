@@ -4,7 +4,6 @@ import { PackagesSection } from "@/components/packages-section"
 import { ServicesSection } from "@/components/services-section"
 import { WhyChooseUsSection } from "@/components/why-choose-us-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
-import { GallerySection } from "@/components/gallery-section"
 import { BlogSection } from "@/components/blog-section"
 import { FAQSection } from "@/components/faq-section"
 
@@ -17,7 +16,6 @@ export default function Home() {
       <ServicesSection />
       <WhyChooseUsSection />
       <TestimonialsSection />
-      <GallerySection />
       <BlogSection />
       <FAQSection />
     </main>

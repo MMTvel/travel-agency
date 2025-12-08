@@ -9,39 +9,34 @@ const services = [
     icon: FileText,
     title: "Visa Processing Assistance",
     description:
-      "Expert guidance for tourist, business, student, and work visas for all countries with high approval rates.",
-    color: "bg-blue-500",
+      "Expert guidance for all visa types including tourist, business, student, and work visas with a 99% approval rate.",
+    features: ["Document preparation", "Application review", "Embassy appointment", "Interview coaching"],
+    color: "from-blue-500 to-blue-600",
+    popular: true,
   },
   {
     icon: Plane,
     title: "Air Ticket Booking",
-    description: "Best deals on domestic and international flights with flexible booking options and 24/7 support.",
-    color: "bg-sky-500",
+    description:
+      "Best deals on domestic and international flights with flexible booking options and 24/7 customer support.",
+    features: ["Best price guarantee", "Flexible rebooking", "Multi-city options", "Last-minute deals"],
+    color: "from-sky-500 to-sky-600",
   },
   {
     icon: Map,
     title: "Tour Planning",
-    description: "Customized travel itineraries designed to match your preferences, budget, and travel style.",
-    color: "bg-teal-500",
-  },
-  {
-    icon: Hotel,
-    title: "Hotel & Transport Booking",
-    description: "Premium accommodations and reliable transportation services worldwide at competitive prices.",
-    color: "bg-indigo-500",
-  },
-  {
-    icon: GraduationCap,
-    title: "Student Visa Consultancy",
-    description: "Comprehensive support for students seeking education abroad with university placement assistance.",
-    color: "bg-purple-500",
+    description:
+      "Customized travel itineraries designed to match your preferences, budget, and travel style perfectly.",
+    features: ["Personalized itineraries", "Local experiences", "Group tours", "Private tours"],
+    color: "from-teal-500 to-teal-600",
   },
   {
     icon: Compass,
     title: "Umrah & Hajj Packages",
     description: "Spiritual journey packages with complete arrangements for a blessed pilgrimage experience.",
-    color: "bg-emerald-500",
-  },
+    features: ["5-star accommodations", "Guided tours", "Transport included", "Visa processing"],
+    color: "from-emerald-500 to-emerald-600",
+  }
 ]
 
 export function ServicesSection() {
