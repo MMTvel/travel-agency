@@ -15,8 +15,6 @@ const services = [
   "Visa Processing",
   "Flight Booking",
   "Tour Packages",
-  "Hotel Booking",
-  "Travel Insurance",
   "Umrah & Hajj",
 ]
 
@@ -71,10 +69,10 @@ export function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-xl font-bold leading-tight">
-                  Global<span className="text-primary">Voyage</span>
+                  Mu<span className="text-primary">mo</span>
                 </span>
                 <span className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-white/50">
-                  Travel & Visa
+                  Travels & Tours
                 </span>
               </div>
             </Link>
@@ -84,7 +82,7 @@ export function Footer() {
             </p>
             <div className="flex gap-2 md:gap-3">
               {[
-                { icon: Facebook, href: "#" },
+                { icon: Facebook, href: "https://www.facebook.com/mumotravelsandtours" },
                 { icon: Instagram, href: "#" },
                 { icon: Twitter, href: "#" },
                 { icon: Youtube, href: "#" },
@@ -150,22 +148,22 @@ export function Footer() {
                   <MapPin className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </div>
                 <span className="text-white/60 leading-relaxed text-sm md:text-base">
-                  123 Travel Plaza, Suite 456
+                  House - 25, Road-13,Sector-6, Uttara Model Town,
                   <br />
-                  New York, NY 10001
+                  Dhaka-1230 Bangladesh.
                 </span>
               </li>
               <li className="flex items-center gap-3 md:gap-4 group">
                 <div className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all shrink-0">
                   <Phone className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </div>
-                <span className="text-white/60 text-sm md:text-base">+1 234 567 8900</span>
+                <span className="text-white/60 text-sm md:text-base">+801332-846700</span>
               </li>
               <li className="flex items-center gap-3 md:gap-4 group">
                 <div className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all shrink-0">
                   <Mail className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </div>
-                <span className="text-white/60 text-sm md:text-base">info@globalvoyage.com</span>
+                <span className="text-white/60 text-sm md:text-base">mumotravelsandtours@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -177,7 +175,7 @@ export function Footer() {
         <div className="container mx-auto px-3 md:px-20 py-4 md:py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
             <p className="text-white/40 text-xs md:text-sm text-center md:text-left">
-              © 2025 GlobalVoyage. All rights reserved.
+              © 2025 Mu<span className="text-primary">mo</span>. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
               {legal.map((link) => (
