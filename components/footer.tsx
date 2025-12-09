@@ -153,17 +153,33 @@ export function Footer() {
                   Dhaka-1230 Bangladesh.
                 </span>
               </li>
-              <li className="flex items-center gap-3 md:gap-4 group">
-                <div className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all shrink-0">
-                  <Phone className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                </div>
-                <span className="text-white/60 text-sm md:text-base">+801332-846700</span>
+              <li>
+                <a
+                  href="https://wa.me/8801332846700"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 md:gap-4 group cursor-pointer"
+                >
+                  <div className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all shrink-0">
+                    <Phone className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  </div>
+                  <span className="text-white/60 text-sm md:text-base group-hover:text-primary transition-colors">
+                    +8801332-846700
+                  </span>
+                </a>
               </li>
-              <li className="flex items-center gap-3 md:gap-4 group">
-                <div className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all shrink-0">
-                  <Mail className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                </div>
-                <span className="text-white/60 text-sm md:text-base">mumotravelsandtours@gmail.com</span>
+              <li>
+                <a
+                  href="mailto:mumotravelsandtours@gmail.com"
+                  className="flex items-center gap-3 md:gap-4 group cursor-pointer"
+                >
+                  <div className="p-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all shrink-0">
+                    <Mail className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  </div>
+                  <span className="text-white/60 text-sm md:text-base group-hover:text-primary transition-colors">
+                    mumotravelsandtours@gmail.com
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
