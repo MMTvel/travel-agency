@@ -13,12 +13,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: "Post Not Found | GlobalVoyage",
+      title: "Post Not Found | Mumo Travels - Travel Tips & Inspiration",
     }
   }
 
   return {
-    title: `${post.title} | GlobalVoyage Blog`,
+    title: `${post.title} | Mumo Travels - Travel Tips & Inspiration`,
     description: post.excerpt,
   }
 }

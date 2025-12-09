@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 import { PageHeader } from "@/components/page-header"
 import { BlogGrid } from "@/components/blog-grid"
-import { BlogCategories } from "@/components/blog-categories"
 import { BlogNewsletter } from "@/components/blog-newsletter"
 
 export const metadata: Metadata = {
-  title: "Travel Blog | GlobalVoyage - Travel Tips & Inspiration",
+  title: "Travel Blog | Mumo Travels - Travel Tips & Inspiration",
   description:
     "Discover travel tips, destination guides, visa information, and inspiring stories from around the world.",
 }
@@ -18,11 +17,8 @@ export default function BlogPage() {
         subtitle="Tips, guides, and inspiring stories for your next adventure"
         breadcrumb="Blog"
       />
-      <div className="md:px-20 px-4">
-        <BlogCategories />
-        <BlogGrid />
-        <BlogNewsletter />
-      </div>
+      <BlogGrid />
+      <BlogNewsletter />
     </main>
   )
 }
