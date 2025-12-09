@@ -1,37 +1,12 @@
 "use client"
 
+import Link from "next/link"
 import { useInView } from "react-intersection-observer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, ArrowRight, Clock } from "lucide-react"
 import { cn } from "@/lib/utils"
-
-const blogPosts = [
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Travel Tips",
-    title: "Top 10 Must-Visit Destinations for 2025",
-    excerpt: "Discover the most breathtaking destinations that should be on every traveler's bucket list this year.",
-    date: "Dec 15, 2024",
-    readTime: "5 min read",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Visa Guide",
-    title: "Complete Guide to Schengen Visa Application",
-    excerpt: "Everything you need to know about applying for a Schengen visa, from documents to interview tips.",
-    date: "Dec 10, 2024",
-    readTime: "8 min read",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Budget Travel",
-    title: "How to Travel the World on a Budget",
-    excerpt: "Expert tips and tricks to explore amazing destinations without breaking the bank.",
-    date: "Dec 5, 2024",
-    readTime: "6 min read",
-  },
-]
+import { blogPosts } from "@/lib/blog-data"
 
 export function BlogSection() {
   const { ref, inView } = useInView({
@@ -39,63 +14,69 @@ export function BlogSection() {
     threshold: 0.1,
   })
 
+  const displayPosts = blogPosts.slice(0, 3)
+
   return (
-    <section className="py-20 lg:py-32 bg-secondary/30" ref={ref}>
-      <div className="container mx-auto px-4 md:px-20">
+    <section className="py-16 lg:py-24 bg-secondary/30" ref={ref}>
+      <div className="container mx-auto px-4 md:px-8 lg:px-12">
         {/* Header */}
         <div
           className={cn(
-            "text-center max-w-3xl mx-auto mb-16 transition-all duration-700",
+            "text-center max-w-3xl mx-auto mb-12 lg:mb-16 transition-all duration-700",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >
           <p className="text-primary font-medium tracking-wider uppercase mb-4">Travel Blog</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 lg:mb-6 text-balance">
             Latest Travel Insights
           </h2>
-          <p className="text-muted-foreground text-lg">Tips, guides, and stories to inspire your next adventure</p>
+          <p className="text-muted-foreground text-base lg:text-lg">
+            Tips, guides, and stories to inspire your next adventure
+          </p>
         </div>
 
         {/* Blog Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
-            <Card
-              key={index}
-              className={cn(
-                "group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-card cursor-pointer",
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-              )}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={post.image || "/placeholder.svg"}
-                  alt={post.title}
-                  className="w-full aspect-16/10 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">{post.category}</Badge>
-              </div>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
-                    <span>{post.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{post.readTime}</span>
-                  </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {displayPosts.map((post, index) => (
+            <Link href={`/blog/${post.slug}`} key={post.slug}>
+              <Card
+                className={cn(
+                  "group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-card cursor-pointer h-full",
+                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
+                )}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={post.image || "/placeholder.svg"}
+                    alt={post.title}
+                    className="w-full aspect-16/10 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+
+                  <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">{post.category}</Badge>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                  {post.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
-                <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-4 transition-all">
-                  <span>Read More</span>
-                  <ArrowRight className="h-4 w-4" />
-                </div>
-              </CardContent>
-            </Card>
+                <CardContent className="p-5 lg:p-6">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4" />
+                      <span>{post.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                  <h3 className="text-lg lg:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
+                  <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-4 transition-all">
+                    <span>Read More</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

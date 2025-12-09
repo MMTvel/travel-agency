@@ -4,8 +4,6 @@ export interface BlogPost {
   category: string
   title: string
   excerpt: string
-  author: string
-  authorImage?: string
   date: string
   readTime: string
   featured: boolean
@@ -14,208 +12,267 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "top-10-must-visit-destinations-2025",
-    image: "/santorini-greece-beautiful-sunset-travel-destinati.jpg",
-    category: "Destinations",
-    title: "Top 10 Must-Visit Destinations for 2025",
+    slug: "how-to-book-cheapest-air-tickets-bangladesh",
+    image: "/blog-air-ticket.jpg",
+    category: "Air Ticket",
+    title: "How to Book the Cheapest Air Tickets from Bangladesh",
     excerpt:
-      "Discover the most breathtaking destinations that should be on every traveler's bucket list this year. From hidden gems to popular hotspots.",
-    author: "Sarah Anderson",
-    date: "Dec 15, 2024",
-    readTime: "5 min read",
+      "Learn the best strategies, timing, and tips to find affordable flight tickets for your next international journey from Bangladesh.",
+    date: "Jan 5, 2025",
+    readTime: "7 min read",
     featured: true,
     content: `
-      <p>As we step into 2025, the world of travel continues to evolve, offering new and exciting destinations for adventurous souls. Whether you're seeking pristine beaches, ancient cultures, or breathtaking natural wonders, this year's top destinations promise unforgettable experiences.</p>
+      <p>Finding affordable air tickets can significantly reduce your travel expenses. Here's our expert guide to booking the cheapest flights from Bangladesh.</p>
       
-      <h2>1. Santorini, Greece</h2>
-      <p>The iconic white-washed buildings and stunning sunsets of Santorini continue to captivate travelers from around the globe. This Greek island offers a perfect blend of history, culture, and natural beauty that makes it an essential destination for 2025.</p>
+      <h2>Best Time to Book Flights</h2>
+      <p>Book your tickets 6-8 weeks in advance for international flights. Tuesday and Wednesday often have the lowest prices. Avoid booking during peak seasons like Eid holidays unless necessary.</p>
       
-      <h2>2. Kyoto, Japan</h2>
-      <p>Experience the perfect harmony of ancient traditions and modern innovation in Kyoto. From serene temples to beautiful cherry blossoms, this city offers a glimpse into Japan's rich cultural heritage.</p>
+      <h2>Flexible Date Strategy</h2>
+      <p>Being flexible with your travel dates can save you 20-40% on airfare. Use fare comparison tools to check prices across different dates. Mid-week flights are generally cheaper than weekend departures.</p>
       
-      <h2>3. Patagonia, Argentina & Chile</h2>
-      <p>For adventure seekers, Patagonia's dramatic landscapes of glaciers, mountains, and pristine wilderness offer unparalleled hiking and wildlife experiences.</p>
+      <h2>Choose the Right Airlines</h2>
+      <p>Compare prices between full-service carriers like Biman Bangladesh, Emirates, and Singapore Airlines with budget options. Sometimes a connecting flight through Dubai or Singapore offers better value.</p>
       
-      <h2>4. Morocco</h2>
-      <p>The vibrant markets, stunning architecture, and diverse landscapes of Morocco make it a must-visit destination. From the bustling medinas of Marrakech to the serene Sahara Desert, Morocco offers endless exploration.</p>
+      <h2>Sign Up for Alerts</h2>
+      <p>Subscribe to airline newsletters and fare alert services. Many airlines offer exclusive discounts to their email subscribers.</p>
       
-      <h2>5. New Zealand</h2>
-      <p>Known for its stunning natural beauty, New Zealand offers everything from dramatic fjords to volcanic landscapes, making it perfect for nature lovers and adventure enthusiasts alike.</p>
+      <h2>Consider Nearby Airports</h2>
+      <p>If traveling to destinations with multiple airports, check all options. Sometimes flying into a secondary airport can save significant money.</p>
       
-      <h2>Planning Your Trip</h2>
-      <p>When planning visits to these destinations, consider the best seasons for travel, local customs, and necessary visa requirements. Early booking is recommended for popular destinations, especially during peak seasons.</p>
-      
-      <p>Remember to travel responsibly and respect local cultures and environments. Sustainable tourism practices ensure these beautiful destinations remain preserved for future generations.</p>
+      <h2>Work with Travel Agents</h2>
+      <p>Experienced travel agencies like Mumo Travels have access to special fares and can often find deals not available to the general public. We negotiate bulk rates with airlines to pass savings to our customers.</p>
     `,
   },
   {
-    slug: "complete-guide-schengen-visa-application",
-    image: "/schengen-visa-passport-travel-documents.jpg",
-    category: "Visa Guide",
-    title: "Complete Guide to Schengen Visa Application",
+    slug: "complete-guide-visa-processing-bangladesh",
+    image: "/blog-visa-processing.jpg",
+    category: "Visa Processing",
+    title: "Complete Guide to Visa Processing for Bangladeshi Travelers",
     excerpt:
-      "Everything you need to know about applying for a Schengen visa, from required documents to interview tips.",
-    author: "Emily Roberts",
-    date: "Dec 10, 2024",
-    readTime: "8 min read",
-    featured: false,
-    content: `
-      <p>Applying for a Schengen visa can seem daunting, but with proper preparation, the process becomes straightforward. This comprehensive guide walks you through every step of the application process.</p>
-      
-      <h2>What is a Schengen Visa?</h2>
-      <p>A Schengen visa allows you to travel freely across 27 European countries that are part of the Schengen Agreement. This includes popular destinations like France, Germany, Italy, Spain, and many more.</p>
-      
-      <h2>Required Documents</h2>
-      <p>Before applying, ensure you have the following documents ready:</p>
-      <ul>
-        <li>Valid passport (at least 3 months validity beyond your planned stay)</li>
-        <li>Completed visa application form</li>
-        <li>Recent passport-sized photographs</li>
-        <li>Travel insurance with minimum coverage of €30,000</li>
-        <li>Proof of accommodation</li>
-        <li>Flight itinerary</li>
-        <li>Proof of financial means</li>
-        <li>Employment letter or business documents</li>
-      </ul>
-      
-      <h2>Application Process</h2>
-      <p>Submit your application at least 15 days before your planned travel date, but no earlier than 6 months. Book an appointment at the embassy or visa application center of your main destination country.</p>
-      
-      <h2>Interview Tips</h2>
-      <p>During your visa interview, be honest and confident. Know your travel itinerary well and be prepared to explain your ties to your home country that ensure your return.</p>
-      
-      <h2>Processing Time</h2>
-      <p>Standard processing takes 15 calendar days, but it can take up to 45 days in some cases. Plan accordingly and apply early to avoid any travel disruptions.</p>
-    `,
-  },
-  {
-    slug: "how-to-travel-world-on-budget",
-    image: "/budget-backpacker-travel-adventure-mountains.jpg",
-    category: "Budget Travel",
-    title: "How to Travel the World on a Budget",
-    excerpt:
-      "Expert tips and tricks to explore amazing destinations without breaking the bank. Save money while having incredible experiences.",
-    author: "Michael Chen",
-    date: "Dec 5, 2024",
-    readTime: "6 min read",
-    featured: false,
-    content: `
-      <p>Traveling the world doesn't have to drain your savings. With smart planning and flexibility, you can explore amazing destinations while keeping costs low.</p>
-      
-      <h2>Choose Budget-Friendly Destinations</h2>
-      <p>Countries in Southeast Asia, Eastern Europe, and South America offer incredible experiences at a fraction of the cost of Western destinations. Your money goes much further in places like Vietnam, Portugal, or Colombia.</p>
-      
-      <h2>Travel During Off-Season</h2>
-      <p>Avoid peak tourist seasons when prices for flights and accommodations skyrocket. Shoulder seasons often offer the best combination of good weather and lower prices.</p>
-      
-      <h2>Accommodation Hacks</h2>
-      <p>Consider hostels, guesthouses, or platforms like Couchsurfing. House-sitting is another excellent option that can provide free accommodation while you care for someone's home.</p>
-      
-      <h2>Food Strategies</h2>
-      <p>Eat where locals eat, cook your own meals when possible, and take advantage of street food which is often both delicious and affordable.</p>
-      
-      <h2>Transportation Tips</h2>
-      <p>Use budget airlines, overnight buses (which save on accommodation), and consider slow travel to reduce transportation costs while experiencing more of each destination.</p>
-      
-      <h2>Free Activities</h2>
-      <p>Many of the best travel experiences are free – hiking, exploring cities on foot, visiting free museums on certain days, and enjoying public beaches and parks.</p>
-    `,
-  },
-  {
-    slug: "ultimate-maldives-luxury-experience",
-    image: "/maldives-luxury-resort-overwater-bungalow.jpg",
-    category: "Luxury Travel",
-    title: "Ultimate Maldives Luxury Experience",
-    excerpt: "A comprehensive guide to the most luxurious resorts and experiences in the Maldives paradise islands.",
-    author: "David Kumar",
-    date: "Nov 28, 2024",
-    readTime: "7 min read",
-    featured: false,
-    content: `
-      <p>The Maldives represents the pinnacle of luxury travel, with overwater villas, crystal-clear waters, and world-class service creating an unparalleled paradise experience.</p>
-      
-      <h2>Choosing Your Resort</h2>
-      <p>Each resort in the Maldives occupies its own private island, offering exclusivity and privacy. Top choices include Soneva Fushi, One&Only Reethi Rah, and St. Regis Maldives.</p>
-      
-      <h2>Overwater Villa Experience</h2>
-      <p>Nothing compares to waking up above the turquoise lagoon. Premium villas feature glass floors, private pools, and direct ocean access for snorkeling right from your deck.</p>
-      
-      <h2>Underwater Dining</h2>
-      <p>Experience culinary excellence at underwater restaurants like Ithaa, where you dine surrounded by marine life in a glass-enclosed structure beneath the waves.</p>
-      
-      <h2>Water Sports & Activities</h2>
-      <p>From diving with manta rays to sunset dolphin cruises, the Maldives offers exceptional water-based activities. Many resorts have their own house reefs teeming with marine life.</p>
-      
-      <h2>Spa & Wellness</h2>
-      <p>World-renowned spas offer treatments in stunning overwater pavilions, combining ancient healing traditions with modern luxury wellness practices.</p>
-    `,
-  },
-  {
-    slug: "essential-tips-solo-female-travelers",
-    image: "/solo-female-traveler-city-adventure-europe.jpg",
-    category: "Travel Tips",
-    title: "Essential Tips for Solo Female Travelers",
-    excerpt: "Safety tips, packing advice, and destination recommendations for women traveling alone around the world.",
-    author: "Sarah Anderson",
-    date: "Nov 20, 2024",
+      "Everything you need to know about visa applications, required documents, and tips for successful visa approval.",
+    date: "Jan 3, 2025",
     readTime: "10 min read",
     featured: false,
     content: `
-      <p>Solo female travel is an empowering and transformative experience. With proper preparation and awareness, women can safely explore the world independently.</p>
+      <p>Navigating visa applications can be complex. This comprehensive guide covers everything Bangladeshi travelers need to know for successful visa processing.</p>
       
-      <h2>Research Your Destination</h2>
-      <p>Before traveling, research local customs, dress codes, and areas to avoid. Understanding cultural norms helps you blend in and shows respect for local traditions.</p>
+      <h2>Types of Visas</h2>
+      <p>Understanding visa types is crucial: Tourist visas for leisure travel, Business visas for work-related trips, Student visas for education, and Transit visas for layovers.</p>
       
-      <h2>Stay Connected</h2>
-      <p>Share your itinerary with trusted friends or family. Regular check-ins provide peace of mind for both you and your loved ones back home.</p>
+      <h2>Essential Documents</h2>
+      <p>Most visa applications require:</p>
+      <ul>
+        <li>Valid passport (6+ months validity)</li>
+        <li>Passport-sized photographs</li>
+        <li>Bank statements (3-6 months)</li>
+        <li>Employment/business proof</li>
+        <li>Travel itinerary and hotel bookings</li>
+        <li>Return flight tickets</li>
+      </ul>
       
-      <h2>Trust Your Instincts</h2>
-      <p>Your intuition is your best safety tool. If something feels wrong, remove yourself from the situation without hesitation or apology.</p>
+      <h2>Schengen Visa Tips</h2>
+      <p>For European travel, apply at the embassy of your main destination country. Ensure your travel insurance covers minimum €30,000. Apply 15-90 days before travel.</p>
       
-      <h2>Accommodation Safety</h2>
-      <p>Choose accommodations with good reviews from solo female travelers. Female-only dorms in hostels and hotels with 24-hour reception offer added security.</p>
+      <h2>Common Rejection Reasons</h2>
+      <p>Avoid these mistakes: incomplete documents, insufficient funds, unclear travel purpose, and missing supporting documents. Always provide more evidence than required.</p>
       
-      <h2>Packing Essentials</h2>
-      <p>Pack light but include safety essentials: doorstop alarm, portable charger, copies of important documents, and a money belt for valuables.</p>
-      
-      <h2>Connect with Other Travelers</h2>
-      <p>Join female travel groups and use apps designed for solo travelers to meet like-minded women and share experiences safely.</p>
+      <h2>Professional Assistance</h2>
+      <p>At Mumo Travels, we have a 99% visa approval rate. Our experts review your documents, prepare your application, and guide you through the entire process.</p>
     `,
   },
   {
-    slug: "dubai-ultimate-travel-guide-2025",
-    image: "/dubai-skyline-burj-khalifa-modern-city.jpg",
-    category: "Destinations",
-    title: "Dubai: The Ultimate Travel Guide 2025",
+    slug: "best-nepal-tour-packages-from-bangladesh",
+    image: "/blog-nepal-tour.jpg",
+    category: "Tour Package",
+    title: "Best Nepal Tour Packages from Bangladesh: Complete Guide",
+    excerpt: "Discover the beauty of Nepal with our curated tour packages covering Kathmandu, Pokhara, and Nagarkot.",
+    date: "Dec 28, 2024",
+    readTime: "8 min read",
+    featured: false,
+    content: `
+      <p>Nepal, our neighboring country, offers breathtaking landscapes, rich culture, and spiritual experiences. Here's everything you need to know about planning your Nepal tour.</p>
+      
+      <h2>Popular Destinations</h2>
+      <p><strong>Kathmandu:</strong> The capital city features UNESCO World Heritage sites including Pashupatinath Temple, Boudhanath Stupa, and Durbar Square.</p>
+      <p><strong>Pokhara:</strong> Known as the gateway to the Himalayas, featuring Phewa Lake, Sarangkot sunrise views, and adventure activities.</p>
+      <p><strong>Nagarkot:</strong> Famous for panoramic Himalayan views including Mount Everest on clear days.</p>
+      
+      <h2>Best Time to Visit</h2>
+      <p>October to December offers clear skies and pleasant weather. March to May is ideal for rhododendron blooms and trekking.</p>
+      
+      <h2>Our Popular Packages</h2>
+      <p>We offer packages starting from 3 days to extended tours:</p>
+      <ul>
+        <li>Kathmandu 3 Days/2 Nights - 44,900 BDT</li>
+        <li>Kathmandu + Nagarkot 4 Days/3 Nights - 53,900 BDT</li>
+        <li>Kathmandu + Pokhara 5 Days/4 Nights - 55,900 BDT</li>
+        <li>Full Nepal Experience 5 Days/4 Nights - 61,900 BDT</li>
+      </ul>
+      
+      <h2>What's Included</h2>
+      <p>Our packages include accommodation, meals, transportation, guide services, and all entry fees. Contact us for customized itineraries.</p>
+    `,
+  },
+  {
+    slug: "umrah-guide-bangladeshi-pilgrims",
+    image: "/blog-umrah-guide.jpg",
+    category: "Umrah Package",
+    title: "Complete Umrah Guide for Bangladeshi Pilgrims",
     excerpt:
-      "From iconic skyscrapers to hidden souks, discover everything Dubai has to offer for travelers of all budgets.",
-    author: "Michael Chen",
-    date: "Nov 15, 2024",
+      "Everything you need to know about performing Umrah, from visa requirements to spiritual preparation and package options.",
+    date: "Dec 25, 2024",
     readTime: "12 min read",
     featured: false,
     content: `
-      <p>Dubai seamlessly blends futuristic architecture with rich Arabian heritage, creating a destination unlike any other. This guide covers everything you need to know for an unforgettable Dubai experience.</p>
+      <p>Performing Umrah is a deeply spiritual journey for Muslims. This guide helps Bangladeshi pilgrims prepare for this blessed experience.</p>
       
-      <h2>Iconic Landmarks</h2>
-      <p>No visit is complete without seeing the Burj Khalifa, the world's tallest building. The Dubai Frame and Palm Jumeirah also offer spectacular views and photo opportunities.</p>
+      <h2>What is Umrah?</h2>
+      <p>Umrah is a pilgrimage to Mecca that can be performed at any time of the year. While not obligatory like Hajj, it holds great spiritual significance and rewards.</p>
       
-      <h2>Traditional Experiences</h2>
-      <p>Explore the historic Al Fahidi district, take an abra ride across Dubai Creek, and haggle in the Gold and Spice Souks for an authentic Arabian experience.</p>
+      <h2>Umrah Visa Requirements</h2>
+      <p>Requirements include:</p>
+      <ul>
+        <li>Valid passport (6+ months validity)</li>
+        <li>Completed visa application</li>
+        <li>Recent photographs</li>
+        <li>Vaccination certificates</li>
+        <li>Confirmed travel booking through authorized agent</li>
+      </ul>
       
-      <h2>Desert Adventures</h2>
-      <p>Desert safaris offer dune bashing, camel rides, and traditional Bedouin camps with dinner under the stars. Hot air balloon rides at sunrise provide breathtaking desert panoramas.</p>
+      <h2>Best Time for Umrah</h2>
+      <p>Ramadan offers the highest spiritual rewards. However, it's also the busiest time. Off-peak months like January-February and May-June offer comfortable weather and fewer crowds.</p>
       
-      <h2>Shopping Paradise</h2>
-      <p>From the massive Dubai Mall to luxury boutiques, Dubai is a shopper's paradise. The annual Dubai Shopping Festival offers incredible deals and entertainment.</p>
+      <h2>Spiritual Preparation</h2>
+      <p>Before departure, learn the rituals of Ihram, Tawaf, Sa'i, and Halq. Seek forgiveness, settle debts, and make sincere intentions.</p>
       
-      <h2>Culinary Scene</h2>
-      <p>Dubai's dining scene ranges from street food to Michelin-starred restaurants. Try local Emirati cuisine and explore the diverse international food options.</p>
+      <h2>Our Umrah Packages</h2>
+      <p>Mumo Travels offers comprehensive Umrah packages including:</p>
+      <ul>
+        <li>Economy packages with 3-star hotels</li>
+        <li>Standard packages with 4-star hotels near Haram</li>
+        <li>Premium packages with 5-star hotels and VIP services</li>
+        <li>Ramadan special packages</li>
+      </ul>
+      
+      <h2>Why Choose Us</h2>
+      <p>As authorized Umrah agents, we handle all visa processing, provide experienced guides, and ensure comfortable accommodation close to the holy sites.</p>
+    `,
+  },
+  {
+    slug: "thailand-tour-packages-bangladeshi-travelers",
+    image: "/blog-thailand-tour.jpg",
+    category: "Tour Package",
+    title: "Thailand Tour Packages: Best Deals for Bangladeshi Travelers",
+    excerpt:
+      "Explore Thailand's beaches, temples, and vibrant cities with our affordable tour packages designed for Bangladeshi tourists.",
+    date: "Dec 20, 2024",
+    readTime: "8 min read",
+    featured: false,
+    content: `
+      <p>Thailand remains one of the most popular destinations for Bangladeshi travelers, offering visa-on-arrival, affordable prices, and diverse experiences.</p>
+      
+      <h2>Why Thailand?</h2>
+      <p>Thailand offers something for everyone: stunning beaches in Phuket and Pattaya, cultural experiences in Bangkok, adventure in Chiang Mai, and world-class shopping.</p>
+      
+      <h2>Visa Information</h2>
+      <p>Bangladeshi passport holders can get visa-on-arrival for 15 days. For longer stays, apply for a tourist visa at the Thai Embassy in Dhaka.</p>
+      
+      <h2>Popular Destinations</h2>
+      <p><strong>Bangkok:</strong> Grand Palace, Wat Pho, floating markets, and vibrant nightlife.</p>
+      <p><strong>Pattaya:</strong> Beaches, water sports, and entertainment.</p>
+      <p><strong>Phuket:</strong> Beautiful islands, snorkeling, and luxury resorts.</p>
+      
+      <h2>Our Packages</h2>
+      <p>We offer Bangkok city tours, beach holidays in Pattaya and Phuket, and combined packages covering multiple destinations. Prices start from 35,900 BDT per person.</p>
       
       <h2>Best Time to Visit</h2>
-      <p>November to March offers the most pleasant weather. Summer months are extremely hot but offer significant discounts on hotels and attractions.</p>
+      <p>November to February offers the best weather. Avoid the monsoon season from June to October.</p>
+    `,
+  },
+  {
+    slug: "malaysia-singapore-tour-from-bangladesh",
+    image: "/blog-malaysia-singapore.jpg",
+    category: "Tour Package",
+    title: "Malaysia & Singapore Combined Tour: Complete Travel Guide",
+    excerpt: "Experience two amazing countries in one trip with our Malaysia-Singapore tour packages from Bangladesh.",
+    date: "Dec 15, 2024",
+    readTime: "9 min read",
+    featured: false,
+    content: `
+      <p>Combining Malaysia and Singapore in one trip offers incredible value and diverse experiences - from modern cityscapes to tropical rainforests.</p>
+      
+      <h2>Malaysia Highlights</h2>
+      <p><strong>Kuala Lumpur:</strong> Petronas Towers, Batu Caves, shopping at Bukit Bintang.</p>
+      <p><strong>Genting Highlands:</strong> Cool weather, casinos, and theme parks.</p>
+      <p><strong>Langkawi:</strong> Beautiful beaches and duty-free shopping.</p>
+      
+      <h2>Singapore Highlights</h2>
+      <p><strong>Marina Bay:</strong> Gardens by the Bay, Marina Bay Sands, Merlion Park.</p>
+      <p><strong>Sentosa Island:</strong> Universal Studios, beaches, and attractions.</p>
+      <p><strong>Orchard Road:</strong> World-class shopping experience.</p>
+      
+      <h2>Visa Requirements</h2>
+      <p>Both countries require tourist visas for Bangladeshi citizens. We handle complete visa processing for both destinations.</p>
+      
+      <h2>Our Combined Packages</h2>
+      <p>Our 7-day Malaysia-Singapore packages include flights, accommodation, transfers, and guided tours. Starting from 89,900 BDT per person.</p>
+    `,
+  },
+  {
+    slug: "dubai-visa-travel-guide-bangladesh",
+    image: "/blog-dubai-visa.jpg",
+    category: "Visa Processing",
+    title: "Dubai Visa Guide: How to Apply from Bangladesh",
+    excerpt:
+      "Step-by-step guide to obtaining a Dubai tourist visa, including requirements, processing time, and tips for approval.",
+    date: "Dec 10, 2024",
+    readTime: "7 min read",
+    featured: false,
+    content: `
+      <p>Dubai is a popular destination for Bangladeshi travelers. Here's everything you need to know about getting your Dubai visa.</p>
+      
+      <h2>Visa Types</h2>
+      <p>Choose from 14-day, 30-day, or 90-day tourist visas based on your travel plans. Transit visas are also available for short stopovers.</p>
+      
+      <h2>Required Documents</h2>
+      <ul>
+        <li>Passport with 6+ months validity</li>
+        <li>Passport-size photograph</li>
+        <li>Confirmed return ticket</li>
+        <li>Hotel booking confirmation</li>
+        <li>Bank statement</li>
+        <li>Visa application form</li>
+      </ul>
+      
+      <h2>Processing Time</h2>
+      <p>Standard processing takes 3-5 working days. Express processing available for urgent travel needs.</p>
+      
+      <h2>Why Use Mumo Travels</h2>
+      <p>We offer competitive visa fees, fast processing, and high approval rates. Our team ensures your application is complete and accurate.</p>
     `,
   },
 ]
+
+export function getBlogCategories() {
+  const categoryCounts = blogPosts.reduce(
+    (acc, post) => {
+      acc[post.category] = (acc[post.category] || 0) + 1
+      return acc
+    },
+    {} as Record<string, number>,
+  )
+
+  const categories = [
+    { id: "all", name: "All Posts", count: blogPosts.length },
+    ...Object.entries(categoryCounts).map(([name, count]) => ({
+      id: name.toLowerCase().replace(/\s+/g, "-"),
+      name,
+      count,
+    })),
+  ]
+
+  return categories
+}
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug)
@@ -226,4 +283,9 @@ export function getRelatedPosts(currentSlug: string, category: string, limit = 3
     .filter((post) => post.slug !== currentSlug)
     .filter((post) => post.category === category || Math.random() > 0.5)
     .slice(0, limit)
+}
+
+export function getFilteredPosts(category: string): BlogPost[] {
+  if (category === "all") return blogPosts
+  return blogPosts.filter((post) => post.category.toLowerCase().replace(/\s+/g, "-") === category)
 }
