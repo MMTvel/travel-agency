@@ -12,7 +12,9 @@ export default function Home() {
     <main className="min-h-screen">
       <HeroSection />
       <AboutSection />
-      <ServicesWithFilter />
+      <div className="md:mx-20 mx-1">
+        <ServicesWithFilter />
+      </div>
       <ServicesSection />
       <WhyChooseUsSection />
       <TestimonialsSection />

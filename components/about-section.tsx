@@ -15,7 +15,7 @@ const features = [
   { icon: Shield, title: "Visa Support", description: "Expert visa processing for all countries" },
   { icon: Clock, title: "Flight Booking", description: "Best deals on domestic & international flights" },
   { icon: Heart, title: "Tour Planning", description: "Customized itineraries for every traveler" },
-  { icon: MoonStar, title: "Umrah & Hajj Packages", description: "Spiritual journey packages with complete arrangements" },
+  { icon: MoonStar, title: "Umrah & Hajj", description: "Spiritual journey packages with complete arrangements" },
 ]
 
 export function AboutSection() {
@@ -25,7 +25,7 @@ export function AboutSection() {
   })
 
   return (
-    <section id="about" className="py-20 lg:py-32 bg-background" ref={ref}>
+    <section id="about" className="md:py-20 py-4 lg:py-32 bg-background" ref={ref}>
       <div className="container mx-auto md:px-20 px-4">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
@@ -90,7 +90,7 @@ export function AboutSection() {
         {/* Stats Bar */}
         <div
           className={cn(
-            "mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 transition-all duration-700 delay-400",
+            "md:mt-20 mt-2 grid grid-cols-2 md:grid-cols-4 gap-6 transition-all duration-700 delay-400",
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
           )}
         >

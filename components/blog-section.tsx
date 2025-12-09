@@ -17,8 +17,8 @@ export function BlogSection() {
   const displayPosts = blogPosts.slice(0, 3)
 
   return (
-    <section className="py-16 lg:py-24 bg-secondary/30" ref={ref}>
-      <div className="container mx-auto px-4 md:px-8 lg:px-12">
+    <section className="md:py-16 py-2 bg-secondary/30" ref={ref}>
+      <div className="container mx-auto md:px-8 px-2 lg:px-12">
         {/* Header */}
         <div
           className={cn(

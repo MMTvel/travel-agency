@@ -12,11 +12,23 @@ const quickLinks = [
 ]
 
 const services = [
-  "Visa Processing",
-  "Flight Booking",
-  "Tour Packages",
-  "Umrah & Hajj",
-]
+  {
+    name: "Visa Processing",
+    href: "/services/visa-processing"
+  },
+  {
+    name: "Flight Booking",
+    href: "/services/flight-booking"
+  },
+  {
+    name: "Tour Packages",
+    href: "/services/tour-packages"
+  },
+  {
+    name: "Umrah & Hajj",
+    href: "/services/umrah-hajj"
+  },
+];
 
 const legal = [
   { href: "#", label: "Terms & Conditions" },
@@ -126,11 +138,15 @@ export function Footer() {
               <span className="absolute -bottom-2 left-0 w-8 md:w-10 h-1 bg-linear-to-r from-primary to-primary/50 rounded-full" />
             </h4>
             <ul className="space-y-2 md:space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <span className="text-white/60 hover:text-primary transition-colors cursor-pointer text-sm md:text-base">
-                    {service}
-                  </span>
+              {services.map((service, index) => (
+                <li key={index}>
+                  <Link
+                    href={service.href}
+                    className="text-white/60 hover:text-primary hover:translate-x-2 transition-all inline-flex items-center gap-2 group text-sm md:text-base"
+                  >
+                    <ArrowRight className="h-3 w-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    {service.name}
+                  </Link>
                 </li>
               ))}
             </ul>

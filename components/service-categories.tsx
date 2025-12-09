@@ -10,8 +10,8 @@ interface ServiceCategoriesProps {
 
 export function ServiceCategories({ activeService, onServiceChange }: ServiceCategoriesProps) {
   return (
-    <section className="py-4 bg-background border-b border-border">
-      <div className="container mx-auto px-4">
+    <section className="md:py-4 py-1 bg-background border-b border-border">
+      <div className="container mx-auto md:px-4 px-1">
         <AnimatedSection direction="up">
           <div className="flex flex-wrap justify-center gap-3">
             {servicesData.map((service) => (
@@ -19,7 +19,7 @@ export function ServiceCategories({ activeService, onServiceChange }: ServiceCat
                 key={service.id}
                 onClick={() => onServiceChange(service.slug)}
                 className={cn(
-                  "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2",
+                  "md:px-5 px-1 py-2.5 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2",
                   activeService === service.slug
                     ? "bg-primary text-primary-foreground shadow-lg"
                     : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground",
@@ -27,7 +27,7 @@ export function ServiceCategories({ activeService, onServiceChange }: ServiceCat
               >
                 <service.icon className="h-4 w-4" />
                 {service.shortTitle}
-                <span className="text-xs opacity-70">({service.packages.length})</span>
+                <span className="text-xs hidden md:inline opacity-70">({service.packages.length})</span>
               </button>
             ))}
           </div>
