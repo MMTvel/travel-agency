@@ -209,7 +209,7 @@ export function Footer() {
         <div className="container mx-auto px-3 md:px-20 py-4 md:py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
             <p className="text-white/40 text-xs md:text-sm text-center md:text-left">
-              © 2025 Mu<span className="text-primary">mo</span>. All rights reserved.
+              © 2026 Mu<span className="text-primary">mo</span>. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
               {legal.map((link) => (
