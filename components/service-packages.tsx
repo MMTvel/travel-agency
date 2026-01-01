@@ -54,15 +54,19 @@ function PackageCard({ pkg, index, serviceColor }: { pkg: Package; index: number
                     <div className="flex items-end justify-between pt-4 border-t border-border">
                         <div className="flex gap-2">
                             <Button size="sm" variant="outline" asChild>
-                                <Link prefetch={false} href="tel:+8801894844452">
-                                    <Phone className="mr-2 h-5 w-5" />
+                                <Link prefetch={false} href="tel:+8801332-846700">
+                                    <Phone className=" h-5 w-5" />
                                     Call for Price
                                 </Link>
                             </Button>
-                            <Button size="sm" variant="outline" asChild>
-                                <Link prefetch={false} href={`https://wa.me/8801894844452?text=I'm interested in ${pkg.name} package`} target="_blank">
-                                    <MessageCircle className="h-4 w-4" />
+                            <Button size="sm" variant="outline" className="bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full" asChild>
+                                <Link prefetch={false}
+                                    href="https://wa.me/8801332846700"
+                                    className="text-lg font-semibold"
+                                >
+                                    <img src="/whatsapp.svg" alt="WhatsApp" className="inline-block h-5 w-4" />
                                 </Link>
+
                             </Button>
                             <Button size="sm" asChild>
                                 <Link prefetch={false} href="/contact">
@@ -130,7 +134,7 @@ export function ServicePackages({ service }: ServicePackagesProps) {
                                 </Link>
                             </Button>
                             <Button size="lg" variant="outline" asChild>
-                                <Link prefetch={false} href="tel:+8801894844452">
+                                <Link prefetch={false} href="tel:+8801332-846700">
                                     <Phone className="mr-2 h-5 w-5" />
                                     Call Now
                                 </Link>

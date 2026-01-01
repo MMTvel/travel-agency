@@ -50,7 +50,7 @@ export function Header() {
             )}
           >
             <Image
-              src="/icon.png"
+              src="/logo.jpg"
               alt="Mumo Travels & Tours Logo"
               fill
               className="object-contain p-1.5"
@@ -181,7 +181,7 @@ export function Header() {
                   asChild
                 >
                   <Link prefetch={false} href="/contact" onClick={() => setIsOpen(false)}>
-                    Book Now
+                    Contact Us
                   </Link>
                 </Button>
               </div>
