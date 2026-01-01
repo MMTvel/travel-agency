@@ -44,37 +44,17 @@ export function Header() {
         {/* Logo */}
         <Link prefetch={false} href="/" className="flex items-center gap-2 md:gap-3 group">
           <div
-            className={cn(
-              "relative w-10 h-10 md:w-12 md:h-12 rounded-lg transition-all duration-500 overflow-hidden shrink-0",
-              "bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25",
-            )}
+            className={cn("relative w-auto h-10 md:h-14 lg:h-14 transition-all duration-500 overflow-hidden shrink-0")}
           >
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Mumo Travels & Tours Logo"
-              fill
-              className="object-contain p-1.5"
+              className="object-contain h-full w-auto"
+              height={100}
+              width={200}
               priority
-              sizes="(max-width: 768px) 40px, 48px"
+              sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
             />
-          </div>
-          <div className="flex flex-col">
-            <span
-              className={cn(
-                "text-base md:text-lg lg:text-xl font-bold transition-colors duration-300 leading-tight",
-                "text-foreground",
-              )}
-            >
-              Mu<span className="text-primary">mo</span>
-            </span>
-            <span
-              className={cn(
-                "text-[8px] md:text-[9px] lg:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium transition-colors duration-300 whitespace-nowrap",
-                "text-muted-foreground",
-              )}
-            >
-              Travels & Tours
-            </span>
           </div>
         </Link>
 
@@ -116,9 +96,7 @@ export function Header() {
             )}
             asChild
           >
-            <Link
-              prefetch={false}
-              href="/contact">
+            <Link prefetch={false} href="/contact">
               <span className="relative z-10">Contact Us</span>
               <div className="absolute inset-0 bg-linear-to-r from-transparent via-card/20 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-700" />
             </Link>
@@ -139,7 +117,7 @@ export function Header() {
               <Menu className="h-5 w-5 md:h-6 md:w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[280px] sm:w-80 bg-card border-l border-border/50">
+          <SheetContent side="right" className="w-280 sm:w-80 bg-card border-l border-border/50">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <div className="flex flex-col h-full py-4 md:py-6">
               <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-10">
