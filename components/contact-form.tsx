@@ -7,13 +7,26 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Send, CheckCircle, Loader2 } from "lucide-react"
 import { useIsMobile } from "./ui/use-mobile"
+import { trackContactFormSubmission } from "@/lib/meta-pixel"
+
+const SERVICES = [
+  { value: "tour-planning", label: "Tour Planning" },
+  { value: "flight-booking", label: "Flight Booking" },
+  { value: "hotel-reservation", label: "Hotel Reservation" },
+  { value: "visa-assistance", label: "Visa Assistance" },
+  { value: "group-tours", label: "Group Tours" },
+  { value: "travel-insurance", label: "Travel Insurance" },
+  { value: "other", label: "Other" },
+]
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [selectedService, setSelectedService] = useState<string>("")
   const isMobile = useIsMobile()
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -26,6 +39,7 @@ export function ContactForm() {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
+      service: selectedService,
       message: formData.get("message") as string,
     }
 
@@ -41,8 +55,18 @@ export function ContactForm() {
       const result = await response.json()
 
       if (result.success) {
+        trackContactFormSubmission({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          service: data.service,
+          message: data.message,
+          pageName: "ContactPage",
+        })
+
         setIsSuccess(true)
           ; (e.target as HTMLFormElement).reset()
+        setSelectedService("")
       } else {
         setError(result.error || "Something went wrong. Please try again.")
       }
@@ -122,6 +146,24 @@ export function ContactForm() {
                   placeholder="+88017 0000-0000"
                   className="h-9 md:h-12 text-sm md:text-base"
                 />
+              </div>
+
+              <div className="space-y-1">
+                <Label className="text-xs md:text-sm" htmlFor="service">
+                  Service Interested In *
+                </Label>
+                <Select value={selectedService} onValueChange={setSelectedService}>
+                  <SelectTrigger id="service" className="h-9 md:h-12 text-sm md:text-base">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICES.map((service) => (
+                      <SelectItem key={service.value} value={service.value}>
+                        {service.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-1">

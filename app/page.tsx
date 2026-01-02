@@ -9,17 +9,19 @@ import { ServicesSection } from "@/components/services-section"
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <HeroSection />
-      <AboutSection />
-      <div className="px-4 md:px-6 lg:px-20">
-        <ServicesWithFilter />
-        <ServicesSection />
-      </div>
-      <WhyChooseUsSection />
-      <TestimonialsSection />
-      <BlogSection />
-      <FAQSection />
-    </main>
+    <>
+      <main className="min-h-screen">
+        <HeroSection />
+        <AboutSection />
+        <div className="px-4 md:px-6 lg:px-20">
+          <ServicesWithFilter />
+          <ServicesSection />
+        </div>
+        <WhyChooseUsSection />
+        <TestimonialsSection />
+        <BlogSection />
+        <FAQSection />
+      </main>
+    </>
   )
 }

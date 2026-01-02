@@ -153,7 +153,7 @@ export function AboutContent() {
               <p className="text-muted-foreground leading-relaxed">
                 To be the world's most trusted travel consultancy, known for turning travel dreams into reality. We
                 envision a world where every traveler feels confident, supported, and inspired to explore new horizons
-                with GlobalVoyage as their guide.
+                with Momu Travels & Tours as their guide.
               </p>
             </div>
           </AnimatedSection>

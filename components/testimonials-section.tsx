@@ -15,7 +15,7 @@ const testimonials = [
     avatar: "/professional-man-smiling.png",
     rating: 5,
     review:
-      "Thanks to GlobalVoyage, my Dubai trip was absolutely seamless! The team handled everything from visa to hotel bookings. Highly recommend their services!",
+      "Thanks to Momu Travels & Tours, my Dubai trip was absolutely seamless! The team handled everything from visa to hotel bookings. Highly recommend their services!",
   },
   {
     id: 2,

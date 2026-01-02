@@ -3,7 +3,6 @@ import nodemailer from "nodemailer"
 
 interface ContactFormData {
   name: string
-  lastName: string
   email: string
   phone: string
   message: string
@@ -101,7 +100,7 @@ export async function POST(request: Request) {
                   <tr>
                     <td style="background-color: #f4f4f5; padding: 25px 40px; text-align: center;">
                       <p style="margin: 0; color: #71717a; font-size: 13px;">
-                        This email was sent from the GlobalVoyage contact form.
+                        This email was sent from the Momu Travels & Tours contact form.
                       </p>
                       <p style="margin: 10px 0 0 0; color: #a1a1aa; font-size: 12px;">
                         Received on ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" })}
