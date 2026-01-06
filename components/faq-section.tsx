@@ -3,51 +3,10 @@
 import { useInView } from "react-intersection-observer"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { cn } from "@/lib/utils"
+import { FaqIProps } from "@/lib/data-fetch"
 
-const faqs = [
-  {
-    question: "How do I apply for a visa through your agency?",
-    answer:
-      "Simply contact us via phone, WhatsApp, or visit our office. Our visa experts will guide you through the entire process, including document preparation, application submission, and interview preparation. We handle tourist, business, student, and work visas for all countries.",
-  },
-  {
-    question: "Do you arrange group tours?",
-    answer:
-      "Yes! We specialize in both private and group tours. Our group packages offer great value with shared accommodations and activities. We also customize group tours for families, corporate teams, and special occasions like weddings and honeymoons.",
-  },
-  {
-    question: "What is your visa success rate?",
-    answer:
-      "We're proud to maintain a 99% visa approval rate. Our experienced consultants thoroughly review all applications and documents before submission, significantly increasing approval chances. We also provide interview coaching when required.",
-  },
-  {
-    question: "Can I customize my travel package?",
-    answer:
-      "All our packages can be tailored to your preferences. Whether you want to add extra days, upgrade hotels, include specific activities, or change destinations, our travel planners will create a personalized itinerary just for you.",
-  },
-  {
-    question: "What payment options do you accept?",
-    answer:
-      "We accept multiple payment methods including bank transfers, credit/debit cards, and cash payments at our office. We also offer flexible payment plans for larger bookings, allowing you to pay in installments before your travel date.",
-  },
-  {
-    question: "Do you provide travel insurance?",
-    answer:
-      "Yes, we offer comprehensive travel insurance packages covering medical emergencies, trip cancellations, lost luggage, and more. Travel insurance is mandatory for visa applications to many countries, and we'll help you select the right coverage.",
-  },
-  {
-    question: "How far in advance should I book my trip?",
-    answer:
-      "We recommend booking at least 4-6 weeks in advance for international travel, especially if you need visa processing. For peak seasons and popular destinations, 2-3 months advance booking is ideal to secure the best deals and availability.",
-  },
-  {
-    question: "Do you offer Umrah and Hajj packages?",
-    answer:
-      "Yes, we provide complete Umrah and Hajj packages including visa processing, flights, accommodation near Haram, ground transportation, and guided spiritual tours. Our packages cater to different budgets from economy to VIP services.",
-  },
-]
 
-export function FAQSection() {
+export function FAQSection({ faqs }: { faqs: FaqIProps[] }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
