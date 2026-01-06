@@ -45,9 +45,47 @@ export interface BlogPostIProps {
     createdAt: string
 }
 
+export interface FaqIProps {
+    id: number
+    question: string
+    answer: string
+    category: string
+}
+
 
 
 const API_URL = process.env.NEXT_PRIVATE_API_URL;
+
+
+
+
+
+
+export async function getFaqsData(): Promise<FaqIProps[]> {
+    try {
+        const res = await fetch(`${API_URL}/api/admin/faqs`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            next: { revalidate: 60 }
+        });
+        if (!res.ok) {
+            throw new Error("Failed to fetch FAQs");
+        }
+        const data = await res.json();
+        return data.data;
+    } catch (error) {
+        console.error("Error fetching FAQs:", error);
+        return [];
+    }
+}
+
+
+
+
+
+
+
 
 export async function getBlogPostsData(): Promise<BlogPostIProps[]> {
     try {
@@ -67,12 +105,6 @@ export async function getBlogPostsData(): Promise<BlogPostIProps[]> {
         return [];
     }
 }
-
-
-
-
-
-
 
 
 export async function getTestimonialsData(): Promise<TestimonialIProps[]> {
