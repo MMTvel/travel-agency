@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/button"
-import { CheckCircle2, MessageCircle, Phone } from "lucide-react"
+import { ArrowRight, CheckCircle2, MessageCircle, Phone } from "lucide-react"
 import { PackageIProps, ServicesIProps } from "@/lib/data-fetch"
 
 interface ServicePackagesGridProps {
@@ -54,23 +54,31 @@ export function ServicePackagesGrid({ activeService, services }: ServicePackages
                     ))}
                   </ul>
 
-                  {/* Actions */}
-                  <div className="flex justify-between gap-2">
-                    <Button size="sm" variant="outline" asChild>
-                      <Link prefetch={false} href="tel:+8801332-846700">
-                        <Phone className="mr-2 h-5 w-5" />
-                        Call for Price
-                      </Link>
-                    </Button>
-                    <Button variant="outline" size="sm" className="shrink-0 bg-transparent hover:bg-[#20BD5A]" asChild>
-                      <Link prefetch={false}
-                        href="https://wa.me/8801332846700"
-                        className="text-lg font-semibold"
-                      >
-                        <MessageCircle className="mr-2 h-4 w-4" />
-                        WhatsApp
-                      </Link>
-                    </Button>
+                  {/* Price & CTA */}
+                  <div className="pt-4 border-t border-border">
+                    <div className=" flex items-center justify-between mb-2">
+                      <Button size="sm" variant="outline" asChild>
+                        <Link prefetch={false} href="tel:+8801332-846700">
+                          <Phone className=" h-5 w-5" />
+                          Call for Price
+                        </Link>
+                      </Button>
+                      <Button size="sm" variant="outline" className="bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full" asChild>
+                        <Link prefetch={false}
+                          href="https://wa.me/8801332846700"
+                          className="text-lg font-semibold"
+                        >
+                          <img src="/whatsapp.svg" alt="WhatsApp" className="inline-block h-5 lg:w-16 w-4" />
+                        </Link>
+
+                      </Button>
+                      <Button size="sm" asChild>
+                        <Link prefetch={false} href="/contact">
+                          Book Now
+                          <ArrowRight className="ml-1 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>

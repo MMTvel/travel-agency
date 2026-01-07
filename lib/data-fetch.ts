@@ -80,10 +80,46 @@ export async function getFaqsData(): Promise<FaqIProps[]> {
     }
 }
 
+export async function getBlogCategories(): Promise<{ id: string; name: string; count: number }[]> {
+    const blogs = await getBlogPostsData();
+    const categoryCounts = blogs.reduce(
+        (acc, post) => {
+            acc[post.category] = (acc[post.category] || 0) + 1
+            return acc
+        },
+        {} as Record<string, number>,
+    )
+
+    const categories = [
+        { id: "all", name: "All Posts", count: blogs.length },
+        ...Object.entries(categoryCounts).map(([name, count]) => ({
+            id: name.toLowerCase().replace(/\s+/g, "-"),
+            name,
+            count,
+        })),
+    ]
+
+    return categories
+}
+
+export async function getRelatedPosts(currentSlug: string, category: string, limit = 3): Promise<BlogPostIProps[]> {
+    const blogs = await getBlogPostsData();
+    return blogs
+        .filter((post) => post.slug !== currentSlug)
+        .filter((post) => post.category === category || Math.random() > 0.5)
+        .slice(0, limit)
+}
 
 
+export function getFilteredPosts(category: string, blogs: BlogPostIProps[]): BlogPostIProps[] {
+    if (category === "all") return blogs
+    return blogs.filter((post) => post.category.toLowerCase().replace(/\s+/g, "-") === category)
+}
 
-
+export async function getBlogPostBySlug(slug: string): Promise<BlogPostIProps | undefined> {
+    const blogs = await getBlogPostsData();
+    return blogs.find((post) => post.slug === slug)
+}
 
 
 
@@ -127,6 +163,15 @@ export async function getTestimonialsData(): Promise<TestimonialIProps[]> {
     }
 }
 
+export async function getServiceBySlug(slug: string): Promise<ServicesIProps | undefined> {
+    const servicesData = await getServicesWithPackages();
+    return servicesData.find((service) => service.url === slug)
+}
+
+export async function getPackageById(serviceSlug: string, packageId: string): Promise<PackageIProps | undefined> {
+    const service = await getServiceBySlug(serviceSlug)
+    return service?.packages?.find((pkg) => pkg.id.toString() === packageId)
+}
 
 
 export async function getServicesWithPackages(): Promise<ServicesIProps[]> {

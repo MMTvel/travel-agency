@@ -3,14 +3,14 @@ import Link from "next/link"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle2, Clock, ArrowRight, Phone, MessageCircle } from "lucide-react"
-import type { Service, Package } from "@/lib/services-data"
+import { CheckCircle2, ArrowRight, Phone, MessageCircle } from "lucide-react"
+import { PackageIProps, ServicesIProps } from "@/lib/data-fetch"
 
 interface ServicePackagesProps {
-    service: Service
+    service: ServicesIProps
 }
 
-function PackageCard({ pkg, index, serviceColor }: { pkg: Package; index: number; serviceColor: string }) {
+function PackageCard({ pkg, index }: { pkg: PackageIProps; index: number }) {
     return (
         <AnimatedSection direction="up" delay={index * 75}>
             <div className="group relative h-full bg-card rounded-3xl border border-border overflow-hidden hover:shadow-2xl hover:border-primary/20 transition-all duration-500">
@@ -24,12 +24,6 @@ function PackageCard({ pkg, index, serviceColor }: { pkg: Package; index: number
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-
-                    {/* Duration Badge */}
-                    <Badge className="absolute top-4 left-4 bg-white/90 text-foreground backdrop-blur-sm">
-                        <Clock className="w-3 h-3 mr-1" />
-                        {pkg.duration}
-                    </Badge>
                 </div>
 
                 {/* Content */}
@@ -42,7 +36,7 @@ function PackageCard({ pkg, index, serviceColor }: { pkg: Package; index: number
 
                     {/* Highlights */}
                     <ul className="space-y-2 mb-6">
-                        {pkg.highlights.slice(0, 4).map((highlight, idx) => (
+                        {pkg.bulletPoints.map((highlight, idx) => (
                             <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
                                 {highlight}
@@ -51,8 +45,8 @@ function PackageCard({ pkg, index, serviceColor }: { pkg: Package; index: number
                     </ul>
 
                     {/* Price & CTA */}
-                    <div className="flex items-end justify-between pt-4 border-t border-border">
-                        <div className="flex gap-2">
+                    <div className="pt-4 border-t border-border">
+                        <div className=" flex items-center justify-between mb-2">
                             <Button size="sm" variant="outline" asChild>
                                 <Link prefetch={false} href="tel:+8801332-846700">
                                     <Phone className=" h-5 w-5" />
@@ -64,7 +58,7 @@ function PackageCard({ pkg, index, serviceColor }: { pkg: Package; index: number
                                     href="https://wa.me/8801332846700"
                                     className="text-lg font-semibold"
                                 >
-                                    <img src="/whatsapp.svg" alt="WhatsApp" className="inline-block h-5 w-4" />
+                                    <img src="/whatsapp.svg" alt="WhatsApp" className="inline-block h-5 lg:w-16 w-4" />
                                 </Link>
 
                             </Button>
@@ -102,7 +96,7 @@ export function ServicePackages({ service }: ServicePackagesProps) {
                 {/* Features Bar */}
                 <AnimatedSection direction="up" delay={100}>
                     <div className="flex flex-wrap justify-center gap-4 mb-12">
-                        {service.features.map((feature, index) => (
+                        {service.bulletPoints?.map((feature, index) => (
                             <Badge key={index} variant="secondary" className="px-4 py-2 text-sm">
                                 <CheckCircle2 className="h-4 w-4 mr-2 text-primary" />
                                 {feature}
@@ -113,8 +107,8 @@ export function ServicePackages({ service }: ServicePackagesProps) {
 
                 {/* Packages Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {service.packages.map((pkg, index) => (
-                        <PackageCard key={pkg.id} pkg={pkg} index={index} serviceColor={service.color} />
+                    {service.packages?.map((pkg, index) => (
+                        <PackageCard key={pkg.id} pkg={pkg} index={index} />
                     ))}
                 </div>
 
