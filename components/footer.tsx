@@ -39,7 +39,7 @@ const legal = [
   { href: "#", label: "Cookie Policy" },
 ]
 
-export function Footer() {
+export function Footer({ siteUrl, logo, siteName, description }: { siteUrl: string; logo: string; siteName: string; description: string }) {
   return (
     <footer className="bg-linear-to-b from-[oklch(0.18_0.04_250)] to-[oklch(0.14_0.04_250)] text-white relative overflow-hidden">
       {/* Background decoration */}
@@ -79,7 +79,7 @@ export function Footer() {
           <div>
             <Link prefetch={false} href="/" className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6 group">
               <div className=" rounded-lg md:rounded-xl bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all">
-                <Image src="/logo.jpg" alt="Mumo Travels & Tours Logo" width={50} height={50} className="" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                <Image src={"/logo.jpg"} alt={siteName || "Mumo Travels & Tours"} width={50} height={50} className="" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-xl font-bold leading-tight">
@@ -91,8 +91,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-white/60 leading-relaxed text-sm md:text-base mb-4 md:mb-6">
-              Your trusted partner for visa processing, tour packages, and unforgettable travel experiences worldwide.
-              Making travel dreams come true since 2018.
+              {description}
             </p>
             <div className="flex gap-2 md:gap-3">
               {[

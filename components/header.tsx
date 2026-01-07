@@ -16,7 +16,7 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
 ]
 
-export function Header() {
+export function Header({ siteUrl, logo, siteName, description }: { siteUrl: string; logo: string; siteName: string; description: string }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
@@ -47,8 +47,8 @@ export function Header() {
             className={cn("relative w-auto h-10 md:h-14 lg:h-14 transition-all duration-500 overflow-hidden shrink-0")}
           >
             <Image
-              src="/logo.png"
-              alt="Mumo Travels & Tours Logo"
+              src={logo || "/logo.jpg"}
+              alt={siteName || "Mumo Travels & Tours"}
               className="object-contain h-full w-auto"
               height={100}
               width={200}
