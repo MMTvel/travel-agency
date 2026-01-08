@@ -23,7 +23,6 @@ async function getMetadata() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getMetadata();
-  const { logoUrl, siteName, description, siteUrl } = config;
 
   return {
     title: {
