@@ -7,12 +7,6 @@ interface ContactFormData {
   phone: string
   message: string
   service: string
-  port?: number
-  host?: string
-  secure?: boolean
-  password?: string
-  user?: string
-
 }
 
 export async function POST(request: Request) {
@@ -118,15 +112,14 @@ export async function POST(request: Request) {
 
     // Create transporter using SMTP
     const transporter = nodemailer.createTransport({
-      host: data?.host || process.env.SMTP_HOST,
-      port: data?.port || Number.parseInt(process.env.SMTP_PORT || "587"),
-      secure: data?.secure || process.env.SMTP_SECURE === "true" ? false : true, // true for 465, false for other ports
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: Number.parseInt(process.env.SMTP_PORT || "587"),
+      secure: process.env.SMTP_SECURE === "true" ? false : true, // true for 465, false for other ports
       auth: {
-        user: data?.user || process.env.SMTP_USER,
-        pass: data?.password || process.env.SMTP_PASSWORD,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
       },
     });
-    console.log({ transporter })
 
 
     // Send email
@@ -138,11 +131,10 @@ export async function POST(request: Request) {
       html: emailHtml,
     })
 
-    return NextResponse.json({ success: true, transporter })
+    return NextResponse.json({ success: true, message: "Email sent successfully." }, { status: 200 })
   } catch (error) {
-    console.log({ error })
     return NextResponse.json(
-      { success: false, error: error },
+      { success: false, error: "Failed to send email. Please try again later." },
       { status: 500 },
     )
   }
