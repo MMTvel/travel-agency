@@ -1,22 +1,16 @@
-"use client"
+import ContactPage from '@/components/contact-info';
+import { getServicesWithPackages } from '@/lib/data-fetch';
+import { cookies } from 'next/headers';
+import React from 'react'
 
-import { PageHeader } from "@/components/page-header"
-import { ContactForm } from "@/components/contact-form"
-import { useIsMobile } from "@/components/ui/use-mobile"
 
-export default function ContactPage() {
-  const isMobile = useIsMobile()
-
+export default async function Contact() {
+  await cookies();
+  const data = await getServicesWithPackages();
+  const services = data || [];
   return (
-    <main className="min-h-screen">
-      {isMobile ? null : (
-        <PageHeader
-          title="Contact Us"
-          subtitle="We'd love to hear from you. Send us a message and we'll respond as soon as possible."
-          breadcrumb="Contact"
-        />
-      )}
-      <ContactForm />
-    </main>
+    <div>
+      <ContactPage services={services} />
+    </div>
   )
 }

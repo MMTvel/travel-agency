@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Send, CheckCircle, Loader2 } from "lucide-react"
 import { useIsMobile } from "./ui/use-mobile"
 import { trackContactFormSubmission } from "@/lib/meta-pixel"
+import { ServicesIProps } from "@/lib/data-fetch"
 
 const SERVICES = [
   { value: "tour-planning", label: "Tour Planning" },
@@ -22,7 +23,7 @@ const SERVICES = [
   { value: "other", label: "Other" },
 ]
 
-export function ContactForm() {
+export function ContactForm({ services }: { services: ServicesIProps[] }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -39,7 +40,7 @@ export function ContactForm() {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
-      service: selectedService,
+      service: services.find((s) => s.url === selectedService)?.title || "",
       message: formData.get("message") as string,
     }
 
@@ -62,8 +63,7 @@ export function ContactForm() {
           service: data.service,
           message: data.message,
           pageName: "ContactPage",
-        })
-
+        });
         setIsSuccess(true)
           ; (e.target as HTMLFormElement).reset()
         setSelectedService("")
@@ -158,9 +158,9 @@ export function ContactForm() {
                     <SelectValue placeholder="Select a service" />
                   </SelectTrigger>
                   <SelectContent>
-                    {SERVICES.map((service) => (
-                      <SelectItem key={service.value} value={service.value}>
-                        {service.label}
+                    {services.map((service) => (
+                      <SelectItem key={service.id} value={service.url}>
+                        {service.title}
                       </SelectItem>
                     ))}
                   </SelectContent>

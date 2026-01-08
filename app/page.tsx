@@ -10,7 +10,7 @@ import { getBlogPostsData, getFaqsData, getServicesWithPackages, getSlidersData,
 import { cookies } from "next/headers"
 
 export default async function Home() {
-  cookies();
+  await cookies();
   const sliders = await getSlidersData();
   const services = await getServicesWithPackages();
   const testimonials = await getTestimonialsData();
