@@ -30,8 +30,8 @@ async function fetchMetadataFromAPI(): Promise<MetadataIProps> {
             headers: {
                 "Content-Type": "application/json",
             },
-            // Cache for 1 hour to avoid excessive API calls
-            next: { revalidate: 0 },
+            next: { revalidate: 24 * 60 * 3600 }, // Revalidate every 24 hours
+
         })
 
         if (!response.ok) {
