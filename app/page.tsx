@@ -7,10 +7,8 @@ import { FAQSection } from "@/components/faq-section"
 import { ServicesWithFilter } from "@/components/services-with-filter"
 import { ServicesSection } from "@/components/services-section"
 import { getBlogPostsData, getFaqsData, getServicesWithPackages, getSlidersData, getTestimonialsData } from "@/lib/data-fetch"
-import { cookies } from "next/headers"
 
 export default async function Home() {
-  await cookies();
   const sliders = await getSlidersData();
   const services = await getServicesWithPackages();
   const testimonials = await getTestimonialsData();

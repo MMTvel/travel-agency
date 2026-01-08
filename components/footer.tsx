@@ -1,7 +1,5 @@
 import Link from "next/link"
-import { Plane, Facebook, Instagram, Youtube, MapPin, Phone, Mail, ArrowRight, Twitter } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, ArrowRight, Twitter } from "lucide-react"
 import Image from "next/image"
 import { servicesData } from "@/lib/services-data"
 
@@ -13,64 +11,24 @@ const quickLinks = [
   { href: "/blog", label: "Blog" },
 ]
 
-const services = [
-  {
-    name: "Visa Processing",
-    href: "/services/visa-processing"
-  },
-  {
-    name: "Flight Booking",
-    href: "/services/flight-booking"
-  },
-  {
-    name: "Tour Packages",
-    href: "/services/tour-packages"
-  },
-  {
-    name: "Umrah & Hajj",
-    href: "/services/umrah-hajj"
-  },
-];
-
 const legal = [
-  { href: "#", label: "Terms & Conditions" },
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "Refund Policy" },
-  { href: "#", label: "Cookie Policy" },
+  { href: "/terms-conditions", label: "Terms & Conditions" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/", label: "Cookie Policy" },
+  { href: "/refund-policy", label: "Refund Policy" },
 ]
 
-export function Footer({ siteUrl, logo, siteName, description }: { siteUrl: string; logo: string; siteName: string; description: string }) {
+export function Footer({
+  siteUrl,
+  logo,
+  siteName,
+  description,
+}: { siteUrl: string; logo: string; siteName: string; description: string }) {
   return (
     <footer className="bg-linear-to-b from-[oklch(0.18_0.04_250)] to-[oklch(0.14_0.04_250)] text-white relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-150 h-150 bg-primary/5 rounded-full blur-[200px]" />
-      <div className="absolute bottom-0 left-0 w-400 h-400 bg-sky/5 rounded-full blur-[150px]" />
-
-      {/* Newsletter Section */}
-      <div className="border-b border-white/10 relative">
-        <div className="container mx-auto px-3 md:px-20 py-8 md:py-14">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-5 md:gap-8">
-            <div className="text-center lg:text-left">
-              <h3 className="text-xl md:text-3xl font-bold mb-2 md:mb-3">
-                Stay Updated with Our <span className="text-primary">Travel Offers</span>
-              </h3>
-              <p className="text-white/60 text-sm md:text-base">
-                Get exclusive travel deals and updates straight to your inbox
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-2 md:gap-3">
-              <Input
-                placeholder="Enter your email"
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/40 h-11 md:h-14 w-full lg:w-80 rounded-full focus:bg-white/15 focus:border-primary transition-all text-sm md:text-base"
-              />
-              <Button className="bg-linear-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground rounded-full h-11 md:h-14 px-5 md:px-8 shrink-0 font-semibold shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all text-sm md:text-base">
-                Subscribe
-                <ArrowRight className="ml-2 h-3.5 w-3.5 md:h-4 md:w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="absolute top-0 right-0 w-150 h-150 bg-primary/5 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-400 h-400 bg-sky/5 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Main Footer */}
       <div className="container mx-auto px-3 md:px-20 py-10 md:py-16 relative">
@@ -79,7 +37,15 @@ export function Footer({ siteUrl, logo, siteName, description }: { siteUrl: stri
           <div>
             <Link prefetch={false} href="/" className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6 group">
               <div className=" rounded-lg md:rounded-xl bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all">
-                <Image src={"/logo.jpg"} alt={siteName || "Mumo Travels & Tours"} width={50} height={50} className="" priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                <Image
+                  src={"/logo.jpg"}
+                  alt={siteName || "Mumo Travels & Tours"}
+                  width={50}
+                  height={50}
+                  className=""
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-xl font-bold leading-tight">
@@ -90,9 +56,7 @@ export function Footer({ siteUrl, logo, siteName, description }: { siteUrl: stri
                 </span>
               </div>
             </Link>
-            <p className="text-white/60 leading-relaxed text-sm md:text-base mb-4 md:mb-6">
-              {description}
-            </p>
+            <p className="text-white/60 leading-relaxed text-sm md:text-base mb-4 md:mb-6">{description}</p>
             <div className="flex gap-2 md:gap-3">
               {[
                 { icon: Facebook, href: "https://www.facebook.com/mumotravelsandtours" },
