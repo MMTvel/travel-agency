@@ -120,6 +120,7 @@ export async function POST(request: Request) {
         pass: process.env.SMTP_PASSWORD,
       },
     });
+    console.log({ transporter })
 
 
     // Send email
@@ -131,10 +132,11 @@ export async function POST(request: Request) {
       html: emailHtml,
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, transporter })
   } catch (error) {
+    console.log({ error })
     return NextResponse.json(
-      { success: false, error: "Failed to send email. Please try again later." },
+      { success: false, error: error },
       { status: 500 },
     )
   }
