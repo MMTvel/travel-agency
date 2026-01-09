@@ -1,3 +1,4 @@
+import { fetchMetadataFromAPI } from "@/lib/metadata"
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
@@ -9,8 +10,17 @@ interface ContactFormData {
   service: string
 }
 
+async function getMetadata() {
+  const config = await fetchMetadataFromAPI()
+  return config
+}
+
 export async function POST(request: Request) {
   try {
+
+    const config = await getMetadata();
+    const { logoUrl, siteName, description, siteUrl } = config;
+
     const data: ContactFormData = await request.json()
 
     // Validate required fields
@@ -36,7 +46,7 @@ export async function POST(request: Request) {
                   <!-- Header -->
                   <tr>
                     <td style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); padding: 40px 40px; text-align: center;">
-                      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">Momu Travels & Tours</h1>
+                      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;"> ${siteName}</h1>
                       <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">New Contact Form Submission</p>
                     </td>
                   </tr>
@@ -95,7 +105,7 @@ export async function POST(request: Request) {
                   <tr>
                     <td style="background-color: #f4f4f5; padding: 25px 40px; text-align: center;">
                       <p style="margin: 0; color: #71717a; font-size: 13px;">
-                        This email was sent from the Momu Travels & Tours contact form.
+                        This email was sent from the ${siteName} contact form.
                       </p>
                       <p style="margin: 10px 0 0 0; color: #a1a1aa; font-size: 12px;">
                         Received on ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" })}
@@ -124,10 +134,10 @@ export async function POST(request: Request) {
 
     // Send email
     await transporter.sendMail({
-      from: `"Momu Travels & Tours" <${process.env.SMTP_USER}>`,
+      from: `"${siteName}" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
       replyTo: data.email,
-      subject: `[Momu Travels & Tours] from ${data.name} regarding ${data.service}`,
+      subject: `[${siteName}] from ${data.name} regarding ${data.service}`,
       html: emailHtml,
     })
 
