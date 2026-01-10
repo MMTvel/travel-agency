@@ -6,9 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { HeroSliderIProps } from "@/lib/data-fetch"
-
-
+import type { HeroSliderIProps } from "@/lib/data-fetch"
 
 export function HeroSection({ sliders }: { sliders: HeroSliderIProps[] }) {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -52,87 +50,51 @@ export function HeroSection({ sliders }: { sliders: HeroSliderIProps[] }) {
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-foreground/80 via-foreground/50 to-foreground/30" />
-          <div className="absolute inset-0 bg-linear-to-t from-foreground/60 via-transparent to-foreground/40" />
         </div>
       ))}
 
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse hidden md:block" />
-      <div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-sky/20 rounded-full blur-[120px] animate-pulse hidden md:block"
-        style={{ animationDelay: "1s" }}
-      />
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-between py-8 md:py-12 lg:py-16 px-4">
+        <div></div>
 
-      <div className="relative z-10 h-full flex items-center justify-start py-0 md:py-0">
-        <div className="container mx-auto px-4 md:px-6 lg:px-20">
-          <div className="max-w-4xl">
-
-            <div className="overflow-hidden mb-3 md:mb-6">
-              <h1
-                key={`title-${currentSlide}`}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-card leading-[1.15] md:leading-[1.1] animate-fade-in-up text-balance"
-              >
-                {sliders[currentSlide].title.split(" ").map((word, i) => (
-                  <span
-                    key={i}
-                    className={cn("inline-block mr-2 md:mr-4", word === "World" && "text-primary")}
-                    style={{ animationDelay: `${i * 100}ms` }}
-                  >
-                    {word}
-                  </span>
-                ))}
-              </h1>
-            </div>
-
-            <div className="overflow-hidden mb-4 md:mb-10">
-              <p
-                key={`subtitle-${currentSlide}`}
-                className="text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-card/80 max-w-2xl animate-fade-in-up leading-relaxed"
-                style={{ animationDelay: "300ms" }}
-              >
-                {sliders[currentSlide].subtitle}
-              </p>
-            </div>
-
-            <div
-              className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2 md:gap-4 animate-fade-in-up"
-              style={{ animationDelay: "400ms" }}
+        <div className="flex flex-col items-center gap-4 md:gap-6">
+          <div
+            className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up w-full sm:w-auto"
+            style={{ animationDelay: "400ms" }}
+          >
+            <Button
+              size="lg"
+              className={cn(
+                "group relative overflow-hidden",
+                "bg-primary hover:bg-primary/90 text-primary-foreground",
+                "rounded-full px-6 md:px-10 py-4 md:py-6 text-sm md:text-base font-semibold",
+                "shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40",
+                "transition-all duration-300 hover:scale-[1.02]",
+                "w-full sm:w-auto",
+              )}
+              asChild
             >
-              <Button
-                size="lg"
-                className={cn(
-                  "group relative overflow-hidden",
-                  "bg-primary hover:bg-primary/90 text-primary-foreground",
-                  "rounded-full px-5 md:px-8 py-4 md:py-6 text-sm md:text-base font-semibold",
-                  "shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40",
-                  "transition-all duration-300 hover:scale-[1.02]",
-                  "w-full sm:w-auto",
-                )}
-                asChild
-              >
-                <Link prefetch={false} href="/services">
-                  <span className="relative z-10">View Packages</span>
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-card/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className={cn(
-                  "group border-2 border-card/40 text-card",
-                  "bg-card/5 backdrop-blur-sm",
-                  "hover:bg-card hover:text-foreground hover:border-card",
-                  "rounded-full px-5 md:px-8 py-4 md:py-6 text-sm md:text-base font-semibold",
-                  "transition-all duration-300",
-                  "w-full sm:w-auto",
-                )}
-                asChild
-              >
-                <Link prefetch={false} href="/contact">
-                  Contact Us
-                </Link>
-              </Button>
-            </div>
+              <Link prefetch={false} href="/services">
+                <span className="relative z-10">View Packages</span>
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-card/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className={cn(
+                "group border-2 border-card/40 text-card",
+                "bg-card/5 backdrop-blur-sm",
+                "hover:bg-card hover:text-foreground hover:border-card",
+                "rounded-full px-6 md:px-10 py-4 md:py-6 text-sm md:text-base font-semibold",
+                "transition-all duration-300",
+                "w-full sm:w-auto",
+              )}
+              asChild
+            >
+              <Link prefetch={false} href="/contact">
+                Contact Us
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
