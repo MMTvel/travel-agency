@@ -48,7 +48,7 @@ export function HeroSection({ sliders }: { sliders: HeroSliderIProps[] }) {
             alt={slide.title}
             priority={index === 0}
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
           />
         </div>
       ))}
