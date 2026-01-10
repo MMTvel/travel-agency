@@ -75,6 +75,7 @@ export function AboutContent() {
                   <Image
                     width={500}
                     height={500}
+                    quality={100}
                     src="/beautiful-travel-destination-scenic-view.jpg"
                     alt="Destination"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"

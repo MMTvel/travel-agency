@@ -52,6 +52,7 @@ export function Header({ siteUrl, logo, siteName, description }: { siteUrl: stri
               className="object-contain h-full w-auto"
               height={100}
               width={200}
+              quality={100}
               priority
               sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
             />
@@ -130,6 +131,7 @@ export function Header({ siteUrl, logo, siteName, description }: { siteUrl: stri
                     className="object-contain h-full w-auto"
                     height={100}
                     width={200}
+                    quality={100}
                     priority
                     sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
                   />

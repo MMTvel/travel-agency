@@ -105,7 +105,7 @@ export default async function RootLayout({
   const config = await getMetadata();
   const { logoUrl, siteName, description, siteUrl } = config;
   return (
-    <html lang="en" className="hydrated" data-scroll-behavior="smooth">
+    <html lang="en" className="hydrated" data-scroll-behavior="smooth" data-arp="">
       <body className={`${poppins.className} hydrated font-sans antialiased`}>
 
         <Header siteUrl={siteUrl} logo={logoUrl} siteName={siteName} description={description} />

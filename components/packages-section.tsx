@@ -139,6 +139,7 @@ export function PackagesSection() {
                   src={pkg.image || "/placeholder.svg"}
                   alt={pkg.title}
                   width={800}
+                  quality={100}
                   height={600}
                   fill={true}
                   sizes="(max-width: 768px) 100vw, 33vw"

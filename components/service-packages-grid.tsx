@@ -30,6 +30,7 @@ export function ServicePackagesGrid({ activeService, services }: ServicePackages
                     src={pkg.image || "/placeholder.svg"}
                     alt={pkg.name}
                     priority
+                    quality={100}
                     fill={true}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"

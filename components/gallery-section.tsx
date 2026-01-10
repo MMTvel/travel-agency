@@ -65,6 +65,7 @@ export function GallerySection() {
                 alt={image.alt}
                 width={800}
                 height={600}
+                quality={100}
                 fill={true}
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-700"
@@ -104,6 +105,7 @@ export function GallerySection() {
               alt={selectedImage.alt}
               width={1200}
               height={800}
+              quality={100}
               fill={true}
               sizes="(max-width: 768px) 100vw, 33vw"
               className="w-full max-h-[85vh] object-contain rounded-2xl"

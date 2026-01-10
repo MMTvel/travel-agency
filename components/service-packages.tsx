@@ -20,6 +20,7 @@ function PackageCard({ pkg, index }: { pkg: PackageIProps; index: number }) {
                         src={pkg.image || "/placeholder.svg"}
                         alt={pkg.name}
                         fill={true}
+                        quality={100}
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />

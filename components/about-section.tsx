@@ -38,7 +38,7 @@ export function AboutSection() {
           >
             <div className="relative">
               <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-2xl">
-                <Image width={500} height={500} src="/travel-agency-office-team-professional-meeting.jpg" alt="Our Team" className="w-full h-full object-cover" />
+                <Image width={500} quality={100} height={500} src="/travel-agency-office-team-professional-meeting.jpg" alt="Our Team" className="w-full h-full object-cover" />
               </div>
               {/* Floating Card */}
               <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-2xl shadow-xl">

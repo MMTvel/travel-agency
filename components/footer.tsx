@@ -42,6 +42,7 @@ export function Footer({
                   alt={siteName || "Mumo Travels & Tours"}
                   width={50}
                   height={50}
+                  quality={100}
                   className=""
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

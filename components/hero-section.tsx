@@ -45,6 +45,7 @@ export function HeroSection({ sliders }: { sliders: HeroSliderIProps[] }) {
           <Image
             src={slide.image || "/placeholder.svg"}
             fill
+            quality={100}
             alt={slide.title}
             priority={index === 0}
             className="object-cover"
