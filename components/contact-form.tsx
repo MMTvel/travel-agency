@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,17 +11,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Send, CheckCircle, Loader2 } from "lucide-react"
 import { useIsMobile } from "./ui/use-mobile"
 import { trackContactFormSubmission } from "@/lib/meta-pixel"
-import { ServicesIProps } from "@/lib/data-fetch"
+import type { ServicesIProps } from "@/lib/data-fetch"
 
-const SERVICES = [
-  { value: "tour-planning", label: "Tour Planning" },
-  { value: "flight-booking", label: "Flight Booking" },
-  { value: "hotel-reservation", label: "Hotel Reservation" },
-  { value: "visa-assistance", label: "Visa Assistance" },
-  { value: "group-tours", label: "Group Tours" },
-  { value: "travel-insurance", label: "Travel Insurance" },
-  { value: "other", label: "Other" },
-]
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
 
 export function ContactForm({ services }: { services: ServicesIProps[] }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -30,9 +25,34 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
   const [selectedService, setSelectedService] = useState<string>("")
   const isMobile = useIsMobile()
 
+
+  const validateForm = (formData: {
+    name: string
+    email: string
+    phone: string
+    service: string
+    message: string
+  }): string | null => {
+    if (!formData.name.trim()) {
+      return "Name is required"
+    }
+    if (!formData.phone.trim()) {
+      return "Phone number is required"
+    }
+    if (formData.email && !validateEmail(formData.email)) {
+      return "Please enter a valid email address"
+    }
+    if (!formData.service) {
+      return "Please select a service"
+    }
+    if (!formData.message.trim()) {
+      return "Message is required"
+    }
+    return null
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setIsSubmitting(true)
     setError(null)
 
     const formData = new FormData(e.currentTarget)
@@ -40,9 +60,17 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
-      service: services.find((s) => s.url === selectedService)?.title || "",
+      service: services.find((s) => s.id === parseInt(selectedService))?.title || "",
       message: formData.get("message") as string,
     }
+
+    const validationError = validateForm(data)
+    if (validationError) {
+      setError(validationError)
+      return
+    }
+
+    setIsSubmitting(true)
 
     try {
       const response = await fetch("/api/send-email", {
@@ -52,6 +80,10 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
         },
         body: JSON.stringify(data),
       })
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`)
+      }
 
       const result = await response.json()
 
@@ -63,15 +95,16 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
           service: data.service,
           message: data.message,
           pageName: "ContactPage",
-        });
+        })
         setIsSuccess(true)
           ; (e.target as HTMLFormElement).reset()
         setSelectedService("")
       } else {
         setError(result.error || "Something went wrong. Please try again.")
       }
-    } catch {
-      setError("Failed to send message. Please try again later.")
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Unknown error occurred"
+      setError(`Failed to send message: ${errorMessage}. Please try again later.`)
     } finally {
       setIsSubmitting(false)
     }
@@ -130,7 +163,6 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
                   name="email"
                   type="email"
                   placeholder="john@example.com"
-
                   className="h-9 md:h-12 text-sm md:text-base"
                 />
               </div>
@@ -159,7 +191,7 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
                   </SelectTrigger>
                   <SelectContent>
                     {services.map((service) => (
-                      <SelectItem key={service.id} value={service.url}>
+                      <SelectItem key={service.id} value={service.id.toString()}>
                         {service.title}
                       </SelectItem>
                     ))}
@@ -186,7 +218,11 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
                 </div>
               )}
 
-              <Button type="submit" className="w-full h-10 md:h-14 text-sm md:text-lg" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                className="w-full h-10 md:h-14 text-sm md:text-lg"
+                disabled={isSubmitting || services.length === 0}
+              >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
