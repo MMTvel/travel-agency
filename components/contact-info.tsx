@@ -6,7 +6,11 @@ import { useIsMobile } from "@/components/ui/use-mobile"
 import { ServicesIProps } from "@/lib/data-fetch"
 
 export default function ContactPage({ services }: { services: ServicesIProps[] }) {
-    const isMobile = useIsMobile()
+    const isMobile = useIsMobile();
+
+    console.log({ services });
+
+
 
     return (
         <main className="min-h-screen">

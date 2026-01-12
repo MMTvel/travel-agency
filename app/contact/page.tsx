@@ -5,7 +5,20 @@ import React from 'react'
 
 export default async function Contact() {
   const data = await getServicesWithPackages();
-  const services = data || [];
+  const staticObject = {
+    id: 999,
+    url: 'special',
+    icon: '⭐',
+    title: 'Others',
+    description: 'Personalized travel planning, destination research, and itinerary design.',
+    bulletPoints: [],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    packages: []
+  };
+
+  const services = [...data, staticObject];
+
   return (
     <div>
       <ContactPage services={services} />

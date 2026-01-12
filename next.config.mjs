@@ -12,6 +12,8 @@ const nextConfig = {
         port: '',
       },
     ],
+    qualities: [100],
+    formats: ['image/avif', 'image/webp'],
   },
 }
 
