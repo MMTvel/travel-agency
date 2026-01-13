@@ -33,7 +33,7 @@ export function ServicesSection({ services }: { services: ServicesIProps[] }) {
                   <div
                     className={`inline-flex md:p-4 p-2 rounded-2xl bg-linear-to-br mb-6 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <div className="text-4xl shrink-0 p-4 bg-blue-500 rounded-lg h-fit">
+                    <div className={`text-4xl shrink-0 p-4 bg-${service.color}-500 rounded-lg h-fit`}>
                       <IconRenderer
                         name={service.icon}
                         className="h-8 w-8 text-white"
@@ -42,7 +42,7 @@ export function ServicesSection({ services }: { services: ServicesIProps[] }) {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                  <h3 className={`text-xl font-bold text-foreground mb-3 group-hover:text-${service.color} transition-colors`}>
                     {service.title}
                   </h3>
 

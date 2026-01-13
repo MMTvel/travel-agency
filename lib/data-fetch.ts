@@ -22,6 +22,7 @@ export interface ServicesIProps {
     description: string
     bulletPoints: string[]
     url: string
+    color: string
     packages?: PackageIProps[]
 }
 
