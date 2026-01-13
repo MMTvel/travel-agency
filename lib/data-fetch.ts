@@ -57,7 +57,9 @@ export interface FaqIProps {
 
 const API_URL = process.env.NEXT_PRIVATE_API_URL;
 
-const TIME = parseInt(process.env.NEXT_REVALIDATE_TIME || "120");
+// const TIME = 4 * 60 * 60;
+const TIME = 60;
+
 
 
 export async function getFaqsData(): Promise<FaqIProps[]> {

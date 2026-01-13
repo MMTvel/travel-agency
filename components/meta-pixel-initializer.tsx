@@ -1,7 +1,7 @@
 /**
  * Client-side Meta Pixel initialization component
  * Initializes Meta Pixel globally and tracks page views
- * Implementation follows Next.js best practices example
+ * Implementation follows Next.js best practices with duplicate prevention
  */
 
 "use client"
@@ -15,12 +15,18 @@ export function MetaPixelInitializer() {
     const pathname = usePathname()
     const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || "748336294208189"
 
-    // Initialize pixel on mount
+    // Initialize pixel on mount - only once
     useEffect(() => {
-        initializeMetaPixel(pixelId)
+        if (typeof window !== 'undefined' && !window.fbq) {
+            initializeMetaPixel(pixelId)
+        }
     }, [pixelId])
 
+    // Track page views on route change
     useEffect(() => {
+        // Wait for pixel to be ready
+        if (typeof window === 'undefined' || !window.fbq) return
+
         // Map pathname to human-readable page names for better tracking
         const pageNames: Record<string, string> = {
             "/": "HomePage",
@@ -28,6 +34,7 @@ export function MetaPixelInitializer() {
             "/blog": "BlogPage",
             "/about": "AboutPage",
         }
+
         // Get page name from pathname mapping or generate from pathname
         const pageName =
             pageNames[pathname] ||
@@ -37,14 +44,10 @@ export function MetaPixelInitializer() {
                 .replace(/\b\w/g, (char) => char.toUpperCase()) ||
             "UnnamedPage"
 
-        // Small delay to ensure pixel is initialized before tracking
-        const timer = setTimeout(() => {
-            trackPageView(pageName, {
-                page_url: typeof window !== "undefined" ? window.location.href : "",
-            })
-        }, 100)
-
-        return () => clearTimeout(timer)
+        // Track page view
+        trackPageView(pageName, {
+            page_url: window.location.href,
+        })
     }, [pathname])
 
     return (
@@ -70,7 +73,10 @@ export function MetaPixelInitializer() {
             s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${pixelId}');
+            fbq('init', '${pixelId}', {
+                autoConfig: false,
+                debug: false
+            });
           `,
                 }}
             />
