@@ -3,8 +3,19 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import type { ServicesIProps } from "@/lib/data-fetch"
-import { cn } from "@/lib/utils"
 import { IconRenderer } from "@/components/icon-renderer"
+
+const iconColors = [
+  "bg-blue-500",
+  "bg-emerald-500",
+  "bg-orange-500",
+  "bg-purple-500",
+  "bg-rose-500",
+  "bg-cyan-500",
+  "bg-amber-500",
+  "bg-indigo-500",
+  "bg-teal-500",
+]
 
 export function ServicesSection({ services }: { services: ServicesIProps[] }) {
   return (
@@ -27,13 +38,11 @@ export function ServicesSection({ services }: { services: ServicesIProps[] }) {
           {services.map((service, index) => (
             <AnimatedSection key={service.id} direction="up" delay={index * 75}>
               <div className="group relative h-full p-8 rounded-3xl bg-card border border-border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden">
-
-
                 <div className="relative">
                   <div
-                    className={`inline-flex md:p-4 p-2 rounded-2xl bg-linear-to-br mb-6 group-hover:scale-110 transition-transform duration-300`}
+                    className={`inline-flex md:p-4 rounded-2xl bg-linear-to-br mb-6 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <div className={`text-4xl shrink-0 p-4 bg-${service.color}-500 rounded-lg h-fit`}>
+                    <div className={`text-4xl shrink-0 p-4 ${iconColors[index % iconColors.length]} rounded-lg h-fit`}>
                       <IconRenderer
                         name={service.icon}
                         className="h-8 w-8 text-white"
@@ -42,7 +51,7 @@ export function ServicesSection({ services }: { services: ServicesIProps[] }) {
                     </div>
                   </div>
 
-                  <h3 className={`text-xl font-bold text-foreground mb-3 group-hover:text-${service.color} transition-colors`}>
+                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
 

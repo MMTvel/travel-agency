@@ -57,7 +57,7 @@ export interface FaqIProps {
 
 const API_URL = process.env.NEXT_PRIVATE_API_URL;
 
-const TIME = 60; // seconds
+const TIME = 0; // seconds
 
 
 export async function getFaqsData(): Promise<FaqIProps[]> {
