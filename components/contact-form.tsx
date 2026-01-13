@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useMemo } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Send, CheckCircle, Loader2 } from "lucide-react"
 import { useIsMobile } from "./ui/use-mobile"
-import { trackContactFormSubmission } from "@/lib/meta-pixel"
+import * as fbq from "@/lib/fpixel"
 import type { ServicesIProps } from "@/lib/data-fetch"
 
 const validateEmail = (email: string): boolean => {
@@ -24,7 +24,6 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
   const [error, setError] = useState<string | null>(null)
   const [selectedService, setSelectedService] = useState<string>("")
   const isMobile = useIsMobile()
-
 
   const validateForm = (formData: {
     name: string
@@ -60,7 +59,7 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
-      service: services.find((s) => s.id === parseInt(selectedService))?.title || "",
+      service: services.find((s) => s.id === Number.parseInt(selectedService))?.title || "",
       message: formData.get("message") as string,
     }
 
@@ -73,7 +72,15 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/send-email", {
+      const fbc = fbq.getFbc()
+      const fbp = fbq.getFbp()
+      const externalId = fbq.generateExternalId()
+      const eventSourceUrl = typeof window !== "undefined" ? window.location.href : ""
+
+      fbq.trackLead(data)
+
+      // Send email
+      const emailResponse = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,24 +88,39 @@ export function ContactForm({ services }: { services: ServicesIProps[] }) {
         body: JSON.stringify(data),
       })
 
-      if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`)
-      }
-
-      const result = await response.json()
-
-      if (result.success) {
-        trackContactFormSubmission({
-          name: data.name,
+      const capiPromise = fetch("/api/facebook-conversion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           email: data.email,
           phone: data.phone,
+          name: data.name,
           service: data.service,
           message: data.message,
-          pageName: "ContactPage",
-        })
+          externalId: externalId,
+          fbc: fbc,
+          fbp: fbp,
+          eventSourceUrl: eventSourceUrl,
+        }),
+      }).catch(() => {
+        // Silently fail CAPI tracking if endpoint not available
+        console.log("CAPI tracking skipped or failed")
+      })
+
+      if (!emailResponse.ok) {
+        throw new Error(`Server error: ${emailResponse.status}`)
+      }
+
+      const result = await emailResponse.json()
+
+      if (result.success) {
         setIsSuccess(true)
           ; (e.target as HTMLFormElement).reset()
         setSelectedService("")
+        // Wait for CAPI to complete before showing success
+        await capiPromise
       } else {
         setError(result.error || "Something went wrong. Please try again.")
       }
