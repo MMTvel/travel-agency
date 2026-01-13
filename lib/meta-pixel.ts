@@ -4,7 +4,7 @@
  * Based on best practices from Next.js Meta Pixel example
  */
 
-interface Fbq {
+type Fbq = {
     (command: string, event: string, data?: Record<string, unknown>): void
     callMethod?: (...args: unknown[]) => void
     queue?: unknown[][]
@@ -13,11 +13,23 @@ interface Fbq {
     push?: unknown
 }
 
+// Extend Window interface in module scope
 declare global {
-    interface Window {
-        fbq: Fbq
-        _fbq: Fbq
-    }
+    // eslint-disable-next-line no-var
+    var fbq: Fbq | undefined
+    // eslint-disable-next-line no-var
+    var _fbq: Fbq | undefined
+}
+
+function getFbq(): Fbq | undefined {
+    if (typeof window === "undefined") return undefined
+    return (window as unknown as { fbq?: Fbq }).fbq
+}
+
+function setFbq(fbq: Fbq): void {
+    if (typeof window === "undefined") return
+        ; (window as unknown as { fbq: Fbq; _fbq: Fbq }).fbq = fbq
+        ; (window as unknown as { fbq: Fbq; _fbq: Fbq })._fbq = fbq
 }
 
 /**
@@ -27,29 +39,30 @@ declare global {
  */
 export function initializeMetaPixel(pixelId: string): void {
     if (typeof window === "undefined") return
-    if (window.fbq && window.fbq.loaded) return // Already initialized
 
-    const fbqFunction = function (this: Fbq, ...args: unknown[]) {
-        if (this.callMethod) {
-            this.callMethod.apply(this, args)
-        } else if (this.queue) {
-            this.queue.push(args)
+    const existingFbq = getFbq()
+    if (existingFbq && existingFbq.loaded) return // Already initialized
+
+    const fbqFunction = ((...args: unknown[]) => {
+        const fn = getFbq()
+        if (fn?.callMethod) {
+            fn.callMethod.apply(fn, args)
+        } else if (fn?.queue) {
+            fn.queue.push(args)
         }
-    } as unknown as Fbq
+    }) as Fbq
 
     fbqFunction.push = fbqFunction
     fbqFunction.loaded = true
     fbqFunction.version = "2.0"
     fbqFunction.queue = []
 
-    if (!window._fbq) {
-        window._fbq = fbqFunction
-    }
-    window.fbq = fbqFunction
+    setFbq(fbqFunction)
 }
 
 /**
  * Track a page view event with comprehensive data
+ * Now tracks custom page names only, without standard PageView to avoid duplicate/error events
  * @param pageName - Descriptive name for the page (e.g., 'HomePage', 'ContactPage')
  * @param additionalData - Optional additional tracking data
  */
@@ -60,7 +73,8 @@ export function trackPageView(pageName: string, additionalData?: Record<string, 
     }
 
     try {
-        window.fbq("track", `${pageName}`, {
+        // Track custom page event with the page name (e.g., "HomePage", "ContactPage")
+        window.fbq("trackCustom", pageName, {
             page_title: pageName,
             page_path: typeof window !== "undefined" ? window.location.pathname : "",
             ...additionalData,
@@ -152,7 +166,7 @@ export function trackCustomEvent(eventName: string, data?: Record<string, unknow
     }
 
     try {
-        window.fbq("track", eventName, {
+        window.fbq("trackCustom", eventName, {
             timestamp: new Date().toISOString(),
             ...data,
         })

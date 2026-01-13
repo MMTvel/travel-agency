@@ -28,7 +28,6 @@ export function MetaPixelInitializer() {
             "/blog": "BlogPage",
             "/about": "AboutPage",
         }
-
         // Get page name from pathname mapping or generate from pathname
         const pageName =
             pageNames[pathname] ||
@@ -75,16 +74,6 @@ export function MetaPixelInitializer() {
           `,
                 }}
             />
-            {/* Fallback noscript pixel for users without JavaScript enabled */}
-            <noscript>
-                <img
-                    height="1"
-                    width="1"
-                    style={{ display: "none" }}
-                    src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-                    alt=""
-                />
-            </noscript>
         </>
     )
 }
