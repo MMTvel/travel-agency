@@ -4,13 +4,13 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 
 const milestones = [
   {
-    year: "2018",
+    year: "2023",
     title: "Company Founded",
     description: "Started our journey with a vision to make travel accessible",
   },
-  { year: "2019", title: "10,000 Customers", description: "Reached our first major milestone of happy travelers" },
-  { year: "2022", title: "Global Expansion", description: "Extended services to 50+ countries worldwide" },
-  { year: "2023", title: "Industry Award", description: "Recognized as Best Travel Consultancy of the Year" },
+  { year: "2023", title: "10,000 Customers", description: "Reached our first major milestone of happy travelers" },
+  { year: "2023", title: "Global Expansion", description: "Extended services to 50+ countries worldwide" },
+  { year: "2024", title: "Industry Award", description: "Recognized as Best Travel Consultancy of the Year" },
   { year: "2024", title: "Digital Innovation", description: "Launched our state-of-the-art booking platform" },
   { year: "2025", title: "50,000+ Travelers", description: "Celebrating 50,000 successful journeys worldwide" },
 ]

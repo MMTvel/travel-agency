@@ -10,7 +10,6 @@ import { getBlogPostsData, getFaqsData, getServicesWithPackages, getSlidersData,
 
 export default async function Home() {
   const sliders = await getSlidersData();
-
   const services = await getServicesWithPackages();
   const testimonials = await getTestimonialsData();
   const blogPosts = await getBlogPostsData();

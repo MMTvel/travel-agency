@@ -17,7 +17,7 @@ export interface PackageIProps {
 
 export interface ServicesIProps {
     id: number
-    icon: string
+    icon: any
     title: string
     description: string
     bulletPoints: string[]

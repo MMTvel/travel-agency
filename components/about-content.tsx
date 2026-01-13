@@ -96,7 +96,7 @@ export function AboutContent() {
 
             <AnimatedSection direction="right" delay={200}>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Founded in 2018, Mumo Travels & Tours began with a simple vision: to make world-class travel accessible to
+                Founded in 2023, Mumo Travels & Tours began with a simple vision: to make world-class travel accessible to
                 everyone. What started as a small consultancy has grown into a trusted name in the travel industry,
                 serving over 50,000 happy travelers worldwide.
               </p>

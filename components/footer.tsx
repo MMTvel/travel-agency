@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, ArrowRight, Twitter } from "lucide-react"
 import Image from "next/image"
-import { servicesData } from "@/lib/services-data"
+import { getServicesWithPackages } from "@/lib/data-fetch"
+
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -18,12 +19,14 @@ const legal = [
   { href: "/refund-policy", label: "Refund Policy" },
 ]
 
-export function Footer({
+export async function Footer({
   siteUrl,
   logo,
   siteName,
   description,
 }: { siteUrl: string; logo: string; siteName: string; description: string }) {
+
+  const services = await getServicesWithPackages();
   return (
     <footer className="bg-linear-to-b from-[oklch(0.18_0.04_250)] to-[oklch(0.14_0.04_250)] text-white relative overflow-hidden">
       {/* Background decoration */}
@@ -38,23 +41,15 @@ export function Footer({
             <Link prefetch={false} href="/" className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6 group">
               <div className=" rounded-lg md:rounded-xl bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all">
                 <Image
-                  src={"/logo.jpg"}
+                  src={"/footer.jpg"}
                   alt={siteName || "Mumo Travels & Tours"}
-                  width={50}
+                  width={150}
                   height={50}
                   quality={100}
                   className=""
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-bold leading-tight">
-                  Mu<span className="text-primary">mo</span>
-                </span>
-                <span className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-white/50">
-                  Travels & Tours
-                </span>
               </div>
             </Link>
             <p className="text-white/60 leading-relaxed text-sm md:text-base mb-4 md:mb-6">{description}</p>
@@ -75,8 +70,6 @@ export function Footer({
               ))}
             </div>
           </div>
-          <a href="http://"  ></a>
-
           {/* Quick Links */}
           <div>
             <h4 className="text-base md:text-lg font-bold mb-4 md:mb-6 relative inline-block">
@@ -106,11 +99,11 @@ export function Footer({
               <span className="absolute -bottom-2 left-0 w-8 md:w-10 h-1 bg-linear-to-r from-primary to-primary/50 rounded-full" />
             </h4>
             <ul className="space-y-2 md:space-y-3">
-              {servicesData.slice(0, 5).map((service, index) => (
+              {services.slice(0, 5).map((service, index) => (
                 <li key={index}>
                   <Link
                     prefetch={false}
-                    href={`/services/${service.slug}`}
+                    href={`/services/${service.url}`}
                     className="text-white/60 hover:text-primary hover:translate-x-2 transition-all inline-flex items-center gap-2 group text-sm md:text-base"
                   >
                     <ArrowRight className="h-3 w-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
@@ -153,7 +146,7 @@ export function Footer({
               </li>
               <li className="text-[12px]">
                 <a
-                  href="mailto:mumotravelsandtours@gmail.com"
+                  href="mailto:mumotravel@gmail.com"
                   className="flex items-center gap-3 md:gap-4 group cursor-pointer"
                 >
                   <div className="px-2 md:p-2.5 rounded-lg md:rounded-xl bg-white/5 border border-white/10 group-hover:bg-primary group-hover:border-primary transition-all shrink-0">
@@ -174,7 +167,7 @@ export function Footer({
         <div className="container mx-auto px-3 md:px-20 py-4 md:py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
             <p className="text-white/40 text-xs md:text-sm text-center md:text-left">
-              © 2026 Mu<span className="text-primary">mo</span>. All rights reserved.
+              © 2026 Mumo Travels & Tours . All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
               {legal.map((link) => (

@@ -2,8 +2,8 @@ import Link from "next/link"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
-import { servicesData } from "@/lib/services-data"
 import { ServicesIProps } from "@/lib/data-fetch"
+import { cn } from "@/lib/utils"
 
 export function ServicesSection({ services }: { services: ServicesIProps[] }) {
   return (
@@ -28,8 +28,13 @@ export function ServicesSection({ services }: { services: ServicesIProps[] }) {
               <div className="group relative h-full p-8 rounded-3xl bg-card border border-border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden">
                 {/* Gradient Background on Hover */}
                 <div
-                  className={`absolute inset-0 bg-linear-to-br  opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-                />
+                  className={cn(
+                    "inline-flex p-4 rounded-xl mb-6 transition-transform group-hover:scale-110",
+                    "from-emerald-500 to-emerald-600",
+                  )}
+                >
+                  <service.icon className="h-7 w-7 text-card" />
+                </div>
 
                 <div className="relative">
                   <div
