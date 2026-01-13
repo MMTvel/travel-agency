@@ -1,116 +1,95 @@
 /**
- * Meta Pixel utility for tracking events
- * Handles Facebook Pixel initialization and event tracking with proper error handling
- * Based on best practices from Next.js Meta Pixel example
+ * Meta Pixel tracking utilities
+ * Provides type-safe functions for tracking Meta Pixel events
  */
 
-type Fbq = {
-    (command: string, event: string, data?: Record<string, unknown>): void
-    callMethod?: (...args: unknown[]) => void
-    queue?: unknown[][]
-    loaded?: boolean
-    version?: string
-    push?: unknown
-}
-
-// Extend Window interface in module scope
 declare global {
-    // eslint-disable-next-line no-var
-    var fbq: Fbq | undefined
-    // eslint-disable-next-line no-var
-    var _fbq: Fbq | undefined
-}
-
-function getFbq(): Fbq | undefined {
-    if (typeof window === "undefined") return undefined
-    return (window as unknown as { fbq?: Fbq }).fbq
-}
-
-function setFbq(fbq: Fbq): void {
-    if (typeof window === "undefined") return
-        ; (window as unknown as { fbq: Fbq; _fbq: Fbq }).fbq = fbq
-        ; (window as unknown as { fbq: Fbq; _fbq: Fbq })._fbq = fbq
+    interface Window {
+        fbq?: {
+            (action: 'track', eventName: string, parameters?: Record<string, any>): void
+            (action: 'trackCustom', eventName: string, parameters?: Record<string, any>): void
+            (action: 'init', pixelId: string, options?: Record<string, any>): void
+            // Fallback for any other fbq calls
+            (action: string, ...args: any[]): void
+        }
+    }
 }
 
 /**
  * Initialize Meta Pixel
- * Should be called once at app start (in layout)
- * Implements the standard Facebook Pixel initialization pattern
+ * Should be called once on app initialization
  */
 export function initializeMetaPixel(pixelId: string): void {
     if (typeof window === "undefined") return
 
-    const existingFbq = getFbq()
-    if (existingFbq && existingFbq.loaded) return // Already initialized
+    // Check if fbq is already initialized
+    if (window.fbq) {
+        console.log("Meta Pixel already initialized")
+        return
+    }
 
-    const fbqFunction = ((...args: unknown[]) => {
-        const fn = getFbq()
-        if (fn?.callMethod) {
-            fn.callMethod.apply(fn, args)
-        } else if (fn?.queue) {
-            fn.queue.push(args)
-        }
-    }) as Fbq
-
-    fbqFunction.push = fbqFunction
-    fbqFunction.loaded = true
-    fbqFunction.version = "2.0"
-    fbqFunction.queue = []
-
-    setFbq(fbqFunction)
+    // console.log("Initializing Meta Pixel with ID:", pixelId)
 }
 
 /**
- * Track a page view event with comprehensive data
- * Now tracks custom page names only, without standard PageView to avoid duplicate/error events
- * @param pageName - Descriptive name for the page (e.g., 'HomePage', 'ContactPage')
- * @param additionalData - Optional additional tracking data
+ * Track PageView event
+ * Call this on route changes to track page views
  */
-export function trackPageView(pageName: string, additionalData?: Record<string, unknown>): void {
+export function trackPageView(pageName?: string, parameters?: Record<string, any>): void {
     if (typeof window === "undefined" || !window.fbq) {
-        console.warn(`[Meta Pixel] fbq not initialized when tracking: ${pageName}`)
+        console.warn("Meta Pixel not initialized")
         return
     }
 
     try {
-        // Track custom page event with the page name (e.g., "HomePage", "ContactPage")
-        window.fbq("trackCustom", pageName, {
-            page_title: pageName,
-            page_path: typeof window !== "undefined" ? window.location.pathname : "",
-            ...additionalData,
-        })
+        const eventData = {
+            ...parameters,
+            page_name: pageName || "UnnamedPage",
+        }
+
+        window.fbq("track", "PageView", eventData)
+        console.log("Meta Pixel: PageView tracked", eventData)
     } catch (error) {
-        console.error(`[Meta Pixel] Error tracking page view: ${pageName}`, error)
+        console.error("Meta Pixel: Error tracking PageView", error)
     }
 }
 
 /**
- * Track a lead event (used for form submissions)
- * Includes comprehensive form data and page context
+ * Track custom event
  */
-export function trackLead(data?: Record<string, unknown>): void {
+export function trackEvent(eventName: string, parameters?: Record<string, any>): void {
     if (typeof window === "undefined" || !window.fbq) {
-        console.warn("[Meta Pixel] fbq not initialized when tracking lead")
+        console.warn("Meta Pixel not initialized")
         return
     }
 
     try {
-        const leadData = {
-            timestamp: new Date().toISOString(),
-            page_path: typeof window !== "undefined" ? window.location.pathname : "",
-            ...data,
-        }
-        window.fbq("track", "Lead", leadData)
+        window.fbq("track", eventName, parameters)
+        console.log(`Meta Pixel: ${eventName} tracked`, parameters)
     } catch (error) {
-        console.error("[Meta Pixel] Error tracking lead", error)
+        console.error(`Meta Pixel: Error tracking ${eventName}`, error)
     }
 }
 
 /**
- * Track contact form submission with detailed form data
- * Specialized lead tracking for contact forms with page context
+ * Track Lead event (form submission)
  */
-export function trackContactFormSubmission(formData: {
+export function trackLead(parameters?: Record<string, any>): void {
+    trackEvent("Lead", parameters)
+}
+
+/**
+ * Track Contact event
+ */
+export function trackContact(parameters?: Record<string, any>): void {
+    trackEvent("Contact", parameters)
+}
+
+/**
+ * Track Contact Form Submission
+ * Tracks when a user submits a contact form with detailed information
+ */
+export function trackContactFormSubmission(parameters: {
     name?: string
     email?: string
     phone?: string
@@ -119,83 +98,42 @@ export function trackContactFormSubmission(formData: {
     pageName?: string
 }): void {
     if (typeof window === "undefined" || !window.fbq) {
-        console.warn("[Meta Pixel] fbq not initialized when tracking contact form")
+        console.warn("Meta Pixel not initialized")
         return
     }
 
     try {
-        const submissionData = {
-            event_type: "contact_form_submission",
-            page_name: formData.pageName || "ContactPage",
-            form_fields: {
-                has_name: !!formData.name,
-                has_email: !!formData.email,
-                has_phone: !!formData.phone,
-                has_service: !!formData.service,
-                has_message: !!formData.message,
-                message_length: formData.message?.length || 0,
-                service_selected: formData.service || "not_selected",
-            },
-            timestamp: new Date().toISOString(),
-        }
-
-        // Track as Lead event for Facebook conversions
-        window.fbq("track", "Lead", submissionData)
-
-        window.fbq("track", "Contact", {
-            page_name: formData.pageName || "ContactPage",
-            email: formData.email,
-            phone: formData.phone,
-            service: formData.service,
-            timestamp: new Date().toISOString(),
+        // Track as Lead event (standard Meta event for form submissions)
+        window.fbq("track", "Lead", {
+            content_name: "Contact Form Submission",
+            content_category: parameters.service || "General Inquiry",
+            value: 1,
+            currency: "USD",
+            ...parameters,
         })
+
+        // Also track as Contact event
+        window.fbq("track", "Contact", parameters)
+
+        console.log("Meta Pixel: Contact form submission tracked", parameters)
     } catch (error) {
-        console.error("[Meta Pixel] Error tracking contact form submission", error)
+        console.error("Meta Pixel: Error tracking contact form submission", error)
     }
 }
 
 /**
- * Track a custom event
- * @param eventName - Name of the custom event
- * @param data - Optional data to include with the event
+ * Track custom conversion
  */
-export function trackCustomEvent(eventName: string, data?: Record<string, unknown>): void {
+export function trackCustomEvent(eventName: string, parameters?: Record<string, any>): void {
     if (typeof window === "undefined" || !window.fbq) {
-        console.warn(`[Meta Pixel] fbq not initialized when tracking: ${eventName}`)
+        console.warn("Meta Pixel not initialized")
         return
     }
 
     try {
-        window.fbq("trackCustom", eventName, {
-            timestamp: new Date().toISOString(),
-            ...data,
-        })
+        window.fbq("trackCustom", eventName, parameters)
+        console.log(`Meta Pixel: Custom event ${eventName} tracked`, parameters)
     } catch (error) {
-        console.error(`[Meta Pixel] Error tracking event: ${eventName}`, error)
-    }
-}
-
-/**
- * Conversation API event tracking
- * Used for WhatsApp Business API or Messenger integration
- */
-export function trackConversationEvent(
-    eventType: "message_sent" | "inquiry" | "callback_request",
-    data?: Record<string, unknown>,
-): void {
-    if (typeof window === "undefined" || !window.fbq) {
-        console.warn("[Meta Pixel] fbq not initialized when tracking conversation event")
-        return
-    }
-
-    try {
-        const conversationData = {
-            event_type: eventType,
-            timestamp: new Date().toISOString(),
-            ...data,
-        }
-        window.fbq("track", "Contact", conversationData)
-    } catch (error) {
-        console.error("[Meta Pixel] Error tracking conversation event", error)
+        console.error(`Meta Pixel: Error tracking custom event ${eventName}`, error)
     }
 }

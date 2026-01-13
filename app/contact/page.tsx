@@ -14,7 +14,8 @@ export default async function Contact() {
     bulletPoints: [],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    packages: []
+    packages: [],
+    color: "blue"
   };
 
   const services = [...data, staticObject];
