@@ -2,8 +2,9 @@ import Link from "next/link"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
-import { ServicesIProps } from "@/lib/data-fetch"
+import type { ServicesIProps } from "@/lib/data-fetch"
 import { cn } from "@/lib/utils"
+import { IconRenderer } from "@/components/icon-renderer"
 
 export function ServicesSection({ services }: { services: ServicesIProps[] }) {
   return (
@@ -26,21 +27,30 @@ export function ServicesSection({ services }: { services: ServicesIProps[] }) {
           {services.map((service, index) => (
             <AnimatedSection key={service.id} direction="up" delay={index * 75}>
               <div className="group relative h-full p-8 rounded-3xl bg-card border border-border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden">
-                {/* Gradient Background on Hover */}
                 <div
                   className={cn(
                     "inline-flex p-4 rounded-xl mb-6 transition-transform group-hover:scale-110",
                     "from-emerald-500 to-emerald-600",
                   )}
                 >
-                  <service.icon className="h-7 w-7 text-card" />
+                  <IconRenderer
+                    name={service.icon}
+                    className="h-7 w-7 text-card"
+                    fallbackClassName="h-7 w-7 text-card opacity-50"
+                  />
                 </div>
 
                 <div className="relative">
                   <div
                     className={`inline-flex p-4 rounded-2xl bg-linear-to-br mb-6 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <div className="text-4xl shrink-0 p-4 bg-primary/10 rounded-lg h-fit">{service.icon}</div>
+                    <div className="text-4xl shrink-0 p-4 bg-primary/10 rounded-lg h-fit">
+                      <IconRenderer
+                        name={service.icon}
+                        className="h-8 w-8 text-primary"
+                        fallbackClassName="h-8 w-8 text-muted-foreground opacity-50"
+                      />
+                    </div>
                   </div>
 
                   <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
