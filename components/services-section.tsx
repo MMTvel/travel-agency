@@ -27,18 +27,7 @@ export function ServicesSection({ services }: { services: ServicesIProps[] }) {
           {services.map((service, index) => (
             <AnimatedSection key={service.id} direction="up" delay={index * 75}>
               <div className="group relative h-full p-8 rounded-3xl bg-card border border-border hover:border-transparent hover:shadow-2xl transition-all duration-500 overflow-hidden">
-                <div
-                  className={cn(
-                    "inline-flex p-4 rounded-xl mb-6 transition-transform group-hover:scale-110",
-                    "from-emerald-500 to-emerald-600",
-                  )}
-                >
-                  <IconRenderer
-                    name={service.icon}
-                    className="h-7 w-7 text-card"
-                    fallbackClassName="h-7 w-7 text-card opacity-50"
-                  />
-                </div>
+
 
                 <div className="relative">
                   <div
