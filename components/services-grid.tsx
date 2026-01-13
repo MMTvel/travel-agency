@@ -5,6 +5,8 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { ServicesIProps } from "@/lib/data-fetch"
+import { IconRenderer } from "./icon-renderer"
+import { cn } from "@/lib/utils"
 
 export function ServicesGrid({ services }: { services: ServicesIProps[] }) {
   return (
@@ -34,9 +36,16 @@ export function ServicesGrid({ services }: { services: ServicesIProps[] }) {
 
                 <div className="relative">
                   <div
-                    className={`inline-flex p-4 rounded-2xl bg-linear-to-br  mb-6 group-hover:scale-110 transition-transform duration-300`}
+                    className={cn(
+                      "inline-flex p-4 rounded-xl mb-6 transition-transform group-hover:scale-110",
+                      "from-emerald-500 to-emerald-600",
+                    )}
                   >
-                    <div className="text-4xl shrink-0 p-4 bg-primary/10 rounded-lg h-fit">{service.icon}</div>
+                    <IconRenderer
+                      name={service.icon}
+                      className="h-7 w-7 text-card"
+                      fallbackClassName="h-7 w-7 text-card opacity-50"
+                    />
                   </div>
 
                   <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
