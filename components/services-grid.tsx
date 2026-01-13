@@ -5,17 +5,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react"
 import type { ServicesIProps } from "@/lib/data-fetch"
 import { IconRenderer } from "@/components/icon-renderer"
 
-const iconColors = [
-  "bg-blue-500",
-  "bg-emerald-500",
-  "bg-orange-500",
-  "bg-purple-500",
-  "bg-rose-500",
-  "bg-cyan-500",
-  "bg-amber-500",
-  "bg-indigo-500",
-  "bg-teal-500",
-]
+
 
 export function ServicesGrid({ services }: { services: ServicesIProps[] }) {
   return (
@@ -42,7 +32,7 @@ export function ServicesGrid({ services }: { services: ServicesIProps[] }) {
                   <div
                     className={`inline-flex md:p-4 rounded-2xl bg-linear-to-br mb-6 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <div className={`text-4xl shrink-0 p-4 ${iconColors[index % iconColors.length]} rounded-lg h-fit`}>
+                    <div className={`text-4xl shrink-0 p-4 bg-blue-500 rounded-lg h-fit`}>
                       <IconRenderer
                         name={service.icon}
                         className="h-8 w-8 text-white"
