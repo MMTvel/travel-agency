@@ -41,23 +41,15 @@ export async function Footer({
             <Link prefetch={false} href="/" className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6 group">
               <div className=" rounded-lg md:rounded-xl bg-linear-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all">
                 <Image
-                  src={"/logo.jpg"}
+                  src={"/footer.jpg"}
                   alt={siteName || "Mumo Travels & Tours"}
-                  width={50}
+                  width={150}
                   height={50}
                   quality={100}
                   className=""
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-bold leading-tight">
-                  Mu<span className="text-primary">mo</span>
-                </span>
-                <span className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-white/50">
-                  Travels & Tours
-                </span>
               </div>
             </Link>
             <p className="text-white/60 leading-relaxed text-sm md:text-base mb-4 md:mb-6">{description}</p>
@@ -78,8 +70,6 @@ export async function Footer({
               ))}
             </div>
           </div>
-          <a href="http://"  ></a>
-
           {/* Quick Links */}
           <div>
             <h4 className="text-base md:text-lg font-bold mb-4 md:mb-6 relative inline-block">
