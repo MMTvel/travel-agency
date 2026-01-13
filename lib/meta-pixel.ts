@@ -28,7 +28,7 @@ export function initializeMetaPixel(pixelId: string): void {
         return
     }
 
-    // console.log("Initializing Meta Pixel with ID:", pixelId)
+    console.log("Initializing Meta Pixel with ID:", pixelId)
 }
 
 /**
@@ -98,26 +98,30 @@ export function trackContactFormSubmission(parameters: {
     pageName?: string
 }): void {
     if (typeof window === "undefined" || !window.fbq) {
-        console.warn("Meta Pixel not initialized")
+        console.warn("Meta Pixel not initialized - cannot track form submission")
         return
     }
 
     try {
-        // Track as Lead event (standard Meta event for form submissions)
-        window.fbq("track", "Lead", {
+        // Prepare clean event data without undefined values
+        const eventData: Record<string, any> = {
             content_name: "Contact Form Submission",
             content_category: parameters.service || "General Inquiry",
-            value: 1,
-            currency: "USD",
-            ...parameters,
-        })
+        }
 
-        // Also track as Contact event
-        window.fbq("track", "Contact", parameters)
+        // Only add defined values
+        if (parameters.name) eventData.name = parameters.name
+        if (parameters.email) eventData.email = parameters.email
+        if (parameters.phone) eventData.phone = parameters.phone
+        if (parameters.service) eventData.service = parameters.service
+        if (parameters.pageName) eventData.page_name = parameters.pageName
 
-        console.log("Meta Pixel: Contact form submission tracked", parameters)
+        // Track Lead event (standard Meta event for form submissions)
+        window.fbq("track", "Lead", eventData)
+
+        console.log("✅ Meta Pixel: Lead event tracked successfully", eventData)
     } catch (error) {
-        console.error("Meta Pixel: Error tracking contact form submission", error)
+        console.error("❌ Meta Pixel: Error tracking Lead event", error)
     }
 }
 
@@ -136,4 +140,40 @@ export function trackCustomEvent(eventName: string, parameters?: Record<string, 
     } catch (error) {
         console.error(`Meta Pixel: Error tracking custom event ${eventName}`, error)
     }
+}
+
+/**
+ * Test Lead event - Use this in browser console to test
+ * Call: testLeadEvent()
+ */
+export function testLeadEvent(): void {
+    if (typeof window === "undefined") {
+        console.error("Not in browser environment")
+        return
+    }
+
+    console.log("🧪 Testing Lead event...")
+
+    if (!window.fbq) {
+        console.error("❌ Meta Pixel (fbq) is not initialized!")
+        console.log("Make sure MetaPixelInitializer component is mounted")
+        return
+    }
+
+    try {
+        window.fbq("track", "Lead", {
+            content_name: "Test Lead Event",
+            content_category: "Test Category",
+            test: true
+        })
+        console.log("✅ Test Lead event fired successfully!")
+        console.log("Check Meta Events Manager to see if it appears")
+    } catch (error) {
+        console.error("❌ Error firing test Lead event:", error)
+    }
+}
+
+// Make test function available globally for console testing
+if (typeof window !== "undefined") {
+    (window as any).testLeadEvent = testLeadEvent
 }
