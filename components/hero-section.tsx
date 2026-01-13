@@ -32,7 +32,7 @@ export function HeroSection({ sliders }: { sliders: HeroSliderIProps[] }) {
   return (
     <section
       id="home"
-      className="relative h-[40vh] md:h-[75vh] lg:h-[85vh] overflow-hidden mt-8 md:mt-16 bg-foreground/5"
+      className="relative h-[30vh] md:h-[75vh] lg:h-[85vh] overflow-hidden mt-8 md:mt-16 bg-foreground/5"
     >
       {sliders.map((slide, index) => (
         <div
