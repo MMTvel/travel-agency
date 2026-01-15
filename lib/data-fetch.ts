@@ -58,7 +58,7 @@ export interface FaqIProps {
 const API_URL = process.env.NEXT_PRIVATE_API_URL;
 
 // const TIME = 4 * 60 * 60;
-const TIME = 60;
+const TIME = 4 * 60 * 60;
 
 
 
