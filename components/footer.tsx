@@ -131,7 +131,7 @@ export function Footer({
                   <MapPin className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </div>
                 <span className="text-white/60 leading-relaxed text-sm md:text-base">
-                  House - 53, Road-13,Sector-04, Uttara , Dhaka Bangladesh. 1230 Dhaka, Bangladesh
+House-20(6th Floor) Shahjalal Ave, Sector-4, Uttara, Dhaka-1230
                 </span>
               </li>
               <li>
